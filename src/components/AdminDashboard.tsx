@@ -2233,6 +2233,12 @@ export default function AdminDashboard({
                                         recipientName="Sample Student Name"
                                         isPreview={true}
                                         mode="template-selection"
+                                        organizationName={
+                                          currentOrganization.name
+                                        }
+                                        organizationLogo={
+                                          currentOrganization.logo
+                                        }
                                         customTemplateConfig={
                                           genCustomTemplateConfig
                                         }

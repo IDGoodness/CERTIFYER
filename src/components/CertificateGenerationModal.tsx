@@ -648,6 +648,12 @@ export default function CertificateGenerationModal({
                                   recipientName="Sample Student Name"
                                   isPreview={true}
                                   mode="template-selection"
+                                  organizationName={
+                                    currentUserOrganization.name
+                                  }
+                                  organizationLogo={
+                                    currentUserOrganization.logo
+                                  }
                                   customTemplateConfig={
                                     selectedTemplateConfig ||
                                     customTemplateConfig

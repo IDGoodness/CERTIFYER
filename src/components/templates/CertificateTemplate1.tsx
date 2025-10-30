@@ -57,10 +57,10 @@ export default function CertificateTemplate1({
 
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible"
-    : "min-w-[1056px] flex justify-center items-center";
+    : "min-w-[1056px] flex justify-center items-center ";
 
   const certificateClass = isPreview
-    ? "flex flex-col justify-center items-center relative shadow-2xl"
+    ? "flex flex-col justify-center items-center relative shadow-lg"
     : "flex flex-col justify-center items-center relative";
 
   return (
@@ -89,11 +89,11 @@ export default function CertificateTemplate1({
             <div className="flex flex-col items-center text-[#BE8C2C]">
               <img
                 src={organizationLogo || vecto}
-                className="size-10"
+                className="w-40" style={{width: 30}}
                 alt={organizationName}
               />
-              <h3 className="font-bold text-2xl">{organizationName}</h3>
-              <small>{organizationSlogan}</small>
+              <h3 className="font-bold text-lg">{organizationName}</h3>
+              {/* <small>{organizationSlogan}</small> */}
             </div>
           </div>
 
@@ -108,23 +108,23 @@ export default function CertificateTemplate1({
           >
             {recipientName}
           </p>
-            <p className="text-center font-bold uppercase text-[#5d5d5d]">
+            <p className="text-center font-bold uppercase text-sm text-[#5d5d5d]">
                 for successfully completing the course <br /> titled
             </p>
 
           <p
-            className="text-center text-3xl font-semibold"
+            className="text-center text-xl font-semibold"
             style={{ fontFamily: "'Cinzel Decorative', serif" }}
           >
             {courseTitle}
           </p>
 
-          <p className="text-center">
+          <p className="text-center mb-40 ">
             {description ||
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
           </p>
 
-          <div className="mt-20 flex justify-between px-10 items-end">
+          <div className="mt-20 flex justify-between px-52 items-end">
             <div className="space-y-4 text-center">
               <div className="border-b-2 w-40 mx-auto" />
               <p className="text-center text-sm font-medium">{date}</p>
@@ -150,7 +150,7 @@ export default function CertificateTemplate1({
               </div>
 
               {/* Optional second signature */}
-              {signatoryName2 || signatureUrl2 ? (
+              {/* {signatoryName2 || signatureUrl2 ? (
                 <div>
                   <div className="w-40 mx-auto">
                     {signatureUrl2 ? (
@@ -169,7 +169,7 @@ export default function CertificateTemplate1({
                     </p>
                   )}
                 </div>
-              ) : null}
+              ) : null} */}
             </div>
           </div>
         </div>

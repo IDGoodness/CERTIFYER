@@ -785,6 +785,8 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
                       recipientName={displayName}
                       isPreview={true}
                       mode="student"
+                      organizationName={orgData?.name}
+                      organizationLogo={orgData?.logo}
                       customTemplateConfig={certificate.customTemplateConfig}
                     />
                   </div>

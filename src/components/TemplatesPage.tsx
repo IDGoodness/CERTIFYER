@@ -178,6 +178,8 @@ export default function TemplatesPage({
                     recipientName="John Doe"
                     isPreview={true}
                     mode="template-selection"
+                    organizationName={organization?.name}
+                    organizationLogo={organization?.logo}
                     customTemplateConfig={template.config}
                   />
                 </div>
@@ -308,6 +310,8 @@ export default function TemplatesPage({
                     recipientName="John Doe"
                     isPreview={true}
                     mode="template-selection"
+                    organizationName={organization?.name}
+                    organizationLogo={organization?.logo}
                     customTemplateConfig={preview.config}
                   />
                 </div>
