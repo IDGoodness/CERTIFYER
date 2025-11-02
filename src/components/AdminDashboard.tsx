@@ -2717,21 +2717,7 @@ export default function AdminDashboard({
               />
             )}
 
-            {activeTab === "templates" && currentOrganization && (
-              <>
-                {console.log("🎨 Rendering TemplatesPage in AdminDashboard", {
-                  activeTab,
-                  hasCurrentOrganization: !!currentOrganization,
-                  organizationName: currentOrganization?.name,
-                })}
-                <TemplatesPage
-                  onSelectTemplate={handleTemplateSelection}
-                  organization={currentOrganization}
-                  accessToken={accessToken}
-                  isPremiumUser={isOrgPremium(currentOrganization)}
-                />
-              </>
-            )}
+            {/* Templates tab is rendered above inside the Tabs component; avoid duplicate rendering here. */}
 
             {activeTab === "settings" && currentOrganization && (
               <div className="px-4 md:px-8 py-6">

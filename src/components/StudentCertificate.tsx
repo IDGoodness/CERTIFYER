@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { createRoot } from "react-dom/client";
 import { useParams, useLocation } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
@@ -75,13 +76,6 @@ interface CertificateData {
 const StudentCertificate: React.FC<StudentCertificateProps> = ({
   subsidiaries,
 }) => {
-  // Add immediate console log to verify component is rendering
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("🎓 STUDENT CERTIFICATE COMPONENT MOUNTED");
-  console.log("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━");
-  console.log("📍 Current URL:", window.location.href);
-  console.log("📍 Pathname:", window.location.pathname);
-
   const params = useParams();
   const location = useLocation();
 
@@ -90,14 +84,6 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
   // Legacy: /certificate/{orgId}/{programId}/{certId}
   const { subsidiaryId, programId, certificateId } = params;
   const wildcardParam = params["*"]; // Catches everything after /certificate/
-
-  console.log("📍 URL Parameters:", {
-    subsidiaryId,
-    programId,
-    certificateId,
-    wildcardParam,
-  });
-  console.log("📍 Location pathname:", location.pathname);
 
   const [certificate, setCertificate] = useState<CertificateData | null>(null);
   const [loading, setLoading] = useState(true);
@@ -358,21 +344,128 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     toast.info("Generating PNG image...");
 
     try {
-      // Capture the certificate as canvas with high quality
-      const canvas = await html2canvas(certificateRef.current, {
-        scale: 3, // Higher quality for better resolution
+      // Render a full-size, non-preview certificate off-screen and capture it.
+      const container = document.createElement("div");
+      container.id = `certificate-capture-${Date.now()}`;
+      container.style.position = "fixed";
+      container.style.left = "-9999px";
+      container.style.top = "-9999px";
+      container.style.width = "1056px";
+      container.style.height = "816px";
+      container.style.pointerEvents = "none";
+      document.body.appendChild(container);
+
+      const root = createRoot(container);
+      root.render(
+        <div style={{ backgroundColor: "#ffffff" }}>
+          <CertificateRenderer
+            templateId={
+              certificate!.template || progData?.template || "template1"
+            }
+            header={
+              certificate!.certificateHeader || "Certificate of Completion"
+            }
+            courseTitle={certificate!.courseName || progData?.name || "Course"}
+            description={
+              certificate!.courseDescription || progData?.description || ""
+            }
+            date={certificate!.completionDate}
+            recipientName={displayName}
+            isPreview={false}
+            mode="student"
+            organizationName={orgData?.name}
+            organizationLogo={orgData?.logo}
+            customTemplateConfig={certificate!.customTemplateConfig}
+          />
+        </div>
+      );
+
+      // Wait briefly for images/fonts to load. This is conservative but avoids race conditions.
+      await new Promise((res) => setTimeout(res, 550));
+
+      const canvas = await html2canvas(container, {
+        scale: 3,
         backgroundColor: "#ffffff",
         logging: false,
         useCORS: true,
         allowTaint: true,
-        removeContainer: true,
+        onclone: (clonedDoc) => {
+          try {
+            // Remove cloned stylesheets and <style> tags so html2canvas won't parse CSS
+            // functions (like oklch) that it doesn't support.
+            const styleEls = clonedDoc.querySelectorAll(
+              'link[rel="stylesheet"], style'
+            );
+            styleEls.forEach((el) => el.parentNode?.removeChild(el));
+
+            const cloned = clonedDoc.getElementById(container.id!);
+            if (!cloned) return;
+            const originals = container.querySelectorAll<HTMLElement>("*");
+            const clones = cloned.querySelectorAll<HTMLElement>("*");
+            const length = Math.min(originals.length, clones.length);
+            for (let i = 0; i < length; i++) {
+              const o = originals[i];
+              const c = clones[i];
+              const cs = window.getComputedStyle(o);
+
+              // Copy resolved styles for a broader set of properties that html2canvas may parse
+              const props = [
+                "color",
+                "background",
+                "background-color",
+                "background-image",
+                "background-position",
+                "background-size",
+                "background-repeat",
+                "border-top-color",
+                "border-right-color",
+                "border-bottom-color",
+                "border-left-color",
+                "box-shadow",
+                "outline-color",
+                "fill",
+                "stroke",
+              ];
+
+              props.forEach((p) => {
+                const value = cs.getPropertyValue(p as any);
+                if (value) c.style.setProperty(p, value, "important");
+              });
+
+              // Sanitize attributes that might include raw CSS functions (e.g., SVG stop-color="oklch(...)")
+              try {
+                const attrs = o.getAttributeNames ? o.getAttributeNames() : [];
+                for (const attr of attrs) {
+                  const val = o.getAttribute(attr);
+                  if (val && val.includes("oklch(")) {
+                    // Try to replace with a sensible resolved value from computed style
+                    const fallback =
+                      cs.getPropertyValue(attr) ||
+                      cs.getPropertyValue("color") ||
+                      cs.getPropertyValue("fill") ||
+                      "transparent";
+                    c.setAttribute(attr, fallback);
+                  }
+                }
+              } catch (attrErr) {
+                // ignore attribute copy errors
+              }
+            }
+          } catch (err) {
+            // Best-effort: if cloning modifications fail, continue without them
+            // eslint-disable-next-line no-console
+            console.warn("onclone style copy failed:", err);
+          }
+        },
       });
+
+      root.unmount();
+      document.body.removeChild(container);
 
       // Convert to blob and download
       canvas.toBlob((blob) => {
         if (blob) {
           const url = URL.createObjectURL(blob);
-          const link = document.createElement("a");
           const courseName =
             certificate?.courseName ||
             certificate?.program?.name ||
@@ -382,6 +475,7 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
             "_"
           )}_${displayName.replace(/\s+/g, "_")}.png`;
 
+          const link = document.createElement("a");
           link.href = url;
           link.download = fileName;
           document.body.appendChild(link);
@@ -412,15 +506,119 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
     toast.info("Generating PDF...");
 
     try {
-      // Capture the certificate as canvas
-      const canvas = await html2canvas(certificateRef.current, {
-        scale: 3, // High quality
+      // Render a full-size, non-preview certificate off-screen and capture it.
+      const container = document.createElement("div");
+      container.style.position = "fixed";
+      container.style.left = "-9999px";
+      container.style.top = "-9999px";
+      container.style.width = "1056px";
+      container.style.height = "816px";
+      container.style.pointerEvents = "none";
+      document.body.appendChild(container);
+
+      const root = createRoot(container);
+      root.render(
+        <div style={{ backgroundColor: "#ffffff" }}>
+          <CertificateRenderer
+            templateId={
+              certificate!.template || progData?.template || "template1"
+            }
+            header={
+              certificate!.certificateHeader || "Certificate of Completion"
+            }
+            courseTitle={certificate!.courseName || progData?.name || "Course"}
+            description={
+              certificate!.courseDescription || progData?.description || ""
+            }
+            date={certificate!.completionDate}
+            recipientName={displayName}
+            isPreview={false}
+            mode="student"
+            organizationName={orgData?.name}
+            organizationLogo={orgData?.logo}
+            customTemplateConfig={certificate!.customTemplateConfig}
+          />
+        </div>
+      );
+
+      await new Promise((res) => setTimeout(res, 550));
+
+      const canvas = await html2canvas(container, {
+        scale: 3,
         backgroundColor: "#ffffff",
         logging: false,
         useCORS: true,
         allowTaint: true,
-        removeContainer: true,
+        onclone: (clonedDoc) => {
+          try {
+            // Remove cloned stylesheets and <style> tags so html2canvas won't parse CSS
+            // functions (like oklch) that it doesn't support.
+            const styleEls = clonedDoc.querySelectorAll(
+              'link[rel="stylesheet"], style'
+            );
+            styleEls.forEach((el) => el.parentNode?.removeChild(el));
+
+            const cloned = clonedDoc.getElementById(container.id!);
+            if (!cloned) return;
+            const originals = container.querySelectorAll<HTMLElement>("*");
+            const clones = cloned.querySelectorAll<HTMLElement>("*");
+            const length = Math.min(originals.length, clones.length);
+            for (let i = 0; i < length; i++) {
+              const o = originals[i];
+              const c = clones[i];
+              const cs = window.getComputedStyle(o);
+              if (cs.color) c.style.setProperty("color", cs.color, "important");
+              if (cs.backgroundColor)
+                c.style.setProperty(
+                  "background-color",
+                  cs.backgroundColor,
+                  "important"
+                );
+              if (cs.borderTopColor)
+                c.style.setProperty(
+                  "border-top-color",
+                  cs.borderTopColor,
+                  "important"
+                );
+              if (cs.borderRightColor)
+                c.style.setProperty(
+                  "border-right-color",
+                  cs.borderRightColor,
+                  "important"
+                );
+              if (cs.borderBottomColor)
+                c.style.setProperty(
+                  "border-bottom-color",
+                  cs.borderBottomColor,
+                  "important"
+                );
+              if (cs.borderLeftColor)
+                c.style.setProperty(
+                  "border-left-color",
+                  cs.borderLeftColor,
+                  "important"
+                );
+              if (cs.boxShadow)
+                c.style.setProperty("box-shadow", cs.boxShadow, "important");
+              if (cs.outlineColor)
+                c.style.setProperty(
+                  "outline-color",
+                  cs.outlineColor,
+                  "important"
+                );
+              if (cs.fill) c.style.setProperty("fill", cs.fill, "important");
+              if (cs.stroke)
+                c.style.setProperty("stroke", cs.stroke, "important");
+            }
+          } catch (err) {
+            // eslint-disable-next-line no-console
+            console.warn("onclone style copy failed:", err);
+          }
+        },
       });
+
+      root.unmount();
+      document.body.removeChild(container);
 
       // Get canvas dimensions
       const imgWidth = canvas.width;
