@@ -345,7 +345,7 @@ export default function OrganizationSettings({
                 >
                   {uploadingLogo ? (
                     <>
-                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      <Skeleton className="h-4 w-4 mr-2 rounded-full inline-block" />
                       Uploading...
                     </>
                   ) : (
@@ -565,7 +565,7 @@ export default function OrganizationSettings({
                         >
                           {uploadingSignature === signatory.id ? (
                             <>
-                              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                              <Skeleton className="h-4 w-4 mr-2 rounded-full inline-block" />
                               Uploading...
                             </>
                           ) : (
@@ -630,7 +630,7 @@ export default function OrganizationSettings({
         >
           {isSaving ? (
             <>
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              <Skeleton className="h-4 w-4 mr-2 rounded-full inline-block" />
               Saving...
             </>
           ) : (

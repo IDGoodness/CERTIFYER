@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Loader2, Crown, Eye, Check, AlertCircle, Lock } from "lucide-react";
+import TemplatesSkeleton from "./skeletons/TemplatesSkeleton";
 import { templateApi } from "../utils/api";
 import { toast } from "sonner";
 import { revalidateOrgPremium, isOrgPremium } from "../utils/subscriptionUtils";
@@ -103,6 +104,13 @@ export default function TemplatesPage({
   const navigate = useNavigate();
 
   const handleSelect = async (template: Template) => {
+    // Debug trace: verify selection handler is invoked
+    // eslint-disable-next-line no-console
+    console.debug(
+      "TemplatesPage: handleSelect called",
+      template?.id,
+      template?.name
+    );
     const premium = template.type === "premium";
     if (premium && !isOrgPremium(organization)) {
       // revalidate with backend to avoid stale local state
@@ -126,13 +134,7 @@ export default function TemplatesPage({
   const premiumTemplates = templates.filter((t) => t.type === "premium");
 
   if (loading) {
-    return (
-      <div className="py-12">
-        <div className="text-center">
-          <Loader2 className="w-10 h-10 animate-spin text-primary mx-auto" />
-        </div>
-      </div>
-    );
+    return <TemplatesSkeleton />;
   }
 
   return (
@@ -222,7 +224,16 @@ export default function TemplatesPage({
                   variant="outline"
                   size="sm"
                   className="flex-1"
-                  onClick={() => setPreview(template)}
+                  onClick={() => {
+                    // Debug trace: preview button clicked
+                    // eslint-disable-next-line no-console
+                    console.debug(
+                      "TemplatesPage: Preview clicked",
+                      template?.id,
+                      template?.name
+                    );
+                    setPreview(template);
+                  }}
                 >
                   <Eye className="w-4 h-4" />
                   Preview
@@ -232,6 +243,13 @@ export default function TemplatesPage({
                   size="sm"
                   className="flex-1"
                   onClick={() => {
+                    // Debug trace: use template (grid) clicked
+                    // eslint-disable-next-line no-console
+                    console.debug(
+                      "TemplatesPage: Use (grid) clicked",
+                      template?.id,
+                      template?.name
+                    );
                     if (
                       template.type === "premium" &&
                       !isOrgPremium(organization)

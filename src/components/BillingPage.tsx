@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { publicAnonKey, projectId } from "../utils/supabase/info";
+import BillingSkeleton from "./skeletons/BillingSkeleton";
 
 interface BillingPageProps {
   organizationId: string;
@@ -502,16 +503,7 @@ export default function BillingPage({
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center py-12">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary mx-auto mb-3"></div>
-          <p className="text-sm text-gray-500">
-            Loading billing information...
-          </p>
-        </div>
-      </div>
-    );
+    return <BillingSkeleton />;
   }
 
   return (

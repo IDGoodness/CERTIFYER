@@ -24,6 +24,7 @@ import {
   Calendar,
 } from "lucide-react";
 import { toast } from "sonner";
+import BillingSkeleton from "./skeletons/BillingSkeleton";
 import { publicAnonKey, projectId } from "../utils/supabase/info";
 
 interface BillingSettingsProps {
@@ -193,14 +194,7 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center py-12">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-primary mx-auto mb-3"></div>
-          <p className="text-sm text-gray-500">Loading billing settings...</p>
-        </div>
-      </div>
-    );
+    return <BillingSkeleton />;
   }
 
   return (
@@ -456,7 +450,7 @@ export default function BillingSettings({ accessToken }: BillingSettingsProps) {
         <Button onClick={handleSave} disabled={saving} size="sm">
           {saving ? (
             <>
-              <div className="animate-spin rounded-full h-3.5 w-3.5 border-b-2 border-white mr-2"></div>
+              <Skeleton className="h-3.5 w-3.5 mr-2 rounded-full inline-block" />
               Saving...
             </>
           ) : (
