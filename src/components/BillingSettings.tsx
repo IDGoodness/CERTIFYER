@@ -25,6 +25,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import BillingSkeleton from "./skeletons/BillingSkeleton";
+import { Skeleton } from "./ui/skeleton";
 import { publicAnonKey, projectId } from "../utils/supabase/info";
 
 interface BillingSettingsProps {
