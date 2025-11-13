@@ -73,6 +73,16 @@ export default function CertificateTemplate2({
     ? "flex flex-col justify-center items-center relative w-[100px] shadow-lg"
     : "flex flex-col justify-center items-center relative";
 
+  // Normalize signatory data into a single array so we can render uniformly
+  const mergedSignatories: Array<{
+    src?: string;
+    name?: string;
+    title?: string;
+  }> = [
+    { src: signatureUrl1, name: signatoryName1, title: signatoryTitle1 },
+    { src: signatureUrl2, name: signatoryName2, title: signatoryTitle2 },
+  ];
+
   return (
     <div
       className={containerClass}
@@ -176,14 +186,26 @@ export default function CertificateTemplate2({
                   </div> */}
 
                   <div className="flex gap-4 items-center">
-                    {[signatureUrl1, signatureUrl2].map((src, idx) =>
-                      src ? (
-                        <img
+                    {mergedSignatories.map((s, idx) =>
+                      s.src ? (
+                        <div
                           key={idx}
-                          src={src}
-                          alt={`sig-${idx}`}
-                          className="w-10 h-10 rounded-full object-cover"
-                        />
+                          className="flex flex-col items-center text-center"
+                        >
+                          <img
+                            src={s.src}
+                            alt={`sig-${idx}`}
+                            className="w-10 h-10 rounded-full object-cover"
+                          />
+                          {s.name && (
+                            <div className="text-sm mt-1">{s.name}</div>
+                          )}
+                          {s.title && (
+                            <div className="text-xs text-gray-600">
+                              {s.title}
+                            </div>
+                          )}
+                        </div>
                       ) : (
                         <div
                           key={idx}
