@@ -340,6 +340,39 @@ const DEFAULT_TEMPLATES = [
     isDefault: true,
     createdAt: new Date().toISOString(),
   },
+  
+  {
+    id: "template8",
+    name: "Academic Participation",
+    description: "Perfect for educational institutions",
+    config: {
+      layout: "academic",
+      colors: {
+        primary: "#dc2626",
+        secondary: "#991b1b",
+        accent: "#ea580c",
+      },
+    },
+    type: "default",
+    isDefault: true,
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: "template9",
+    name: "Academic Endurance",
+    description: "Perfect for educational institutions",
+    config: {
+      layout: "academic",
+      colors: {
+        primary: "#dc2626",
+        secondary: "#991b1b",
+        accent: "#ea580c",
+      },
+    },
+    type: "default",
+    isDefault: true,
+    createdAt: new Date().toISOString(),
+  },
 ];
 
 // ==================== AUTH ROUTES ====================
@@ -1971,7 +2004,11 @@ app.get("/make-server-a611b057/templates", async (c) => {
         t.id === "template2" ||
         t.id === "template3" ||
         t.id === "template4" ||
-        t.id === "template5"
+        t.id === "template5" ||
+        t.id === "template6" ||
+        t.id === "template7" ||
+        t.id === "template8" ||
+        t.id === "template9"
     );
     const premiumTemplates = allTemplates.filter(
       (t) => t.value?.type === "premium"
