@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import secondaryAsset from "../../assets/2nd.svg";
+
 
 
 interface CertificateTemplate5Props {
@@ -14,6 +15,9 @@ interface CertificateTemplate5Props {
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
+  signatoryName2?: string;
+  signatoryTitle2?: string;
+  signatureUrl2?: string;
   mode?: "student" | "template-selection";
 }
 
@@ -26,9 +30,12 @@ export default function CertificateTemplate5({
   isPreview = false,
   organizationName,
   organizationLogo,
-  signatoryName1 = "Hormat kami",
-  signatoryTitle1 = "",
+  signatoryName1,
+  signatoryTitle1,
   signatureUrl1,
+  signatoryName2,
+  signatoryTitle2,
+  signatureUrl2,
   mode = "student",
 }: CertificateTemplate5Props) {
   const scale = mode === "student" ? 0.3 : 1;
@@ -37,23 +44,12 @@ export default function CertificateTemplate5({
     ? "w-full mx-auto origin-center overflow-visible"
     : "min-w-[1056px] flex justify-center items-center";
 
-    useEffect(() => {
-        const id = "rakkas-font";
-        if (!document.getElementById(id)) {
-          const link = document.createElement("link");
-          link.id = id;
-          link.rel = "stylesheet";
-          link.href = "https://fonts.googleapis.com/css2?family=Montserrat&display=swap";
-          document.head.appendChild(link);
-        }
-      }, []);
-
   return (
     <div
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
     >
-      <div className="flex justify-center bg-gradient-to-l from-[#161BA0] to-[#AC06F2] items-center shadow-md w-3xl p-10 rounded-sm relative text-[#4D4D4D] font-['Montserrat'] overflow-hidden">
+      <div className="flex justify-center bg-gradient-to-l from-[#161BA0] to-[#AC06F2] items-center shadow-md w-3xl p-10 rounded-sm relative text-[#4D4D4D] font-[Montserrat] overflow-hidden">
         <div>
           <div className="w-20 h-20 border-2 [border-image:linear-gradient(to_bottom,#DDB4FB,#6E21E0)_1] absolute left-0 bottom-0 rotate-45 z-40" />
           <div className="w-10 h-10 border-2 [border-image:linear-gradient(to_bottom,#DDB4FB,#6E21E0)_1] absolute left-0 bottom-12 rotate-45 z-40" />
@@ -70,47 +66,83 @@ export default function CertificateTemplate5({
         <div className="bg-gradient-to-b from-[#DDB4FB] to-[#FFFFFF] rounded space-y-6 relative p-10 w-full z-30">
           <div className="bg-gradient-to-l from-[#161BA0] to-[#AC06F2] w-full h-6 absolute left-0 top-4" />
           <div className="bg-gradient-to-b from-[#161BA0] to-[#AC06F2] h-full w-6 absolute right-4 top-0" />
-          {secondaryAsset && (
-            // eslint-disable-next-line @next/next/no-img-element
             <img
-              src={String(secondaryAsset)}
+              src={secondaryAsset}
               className="absolute -top-5 -right-5"
               alt="decoration"
             />
-          )}
           <div className="mt-6">
             <h3 className="font-bold text-2xl bg-clip-text text-transparent bg-gradient-to-b from-[#FA54CE] to-[#6E21E0]">
               {header}
             </h3>
-            <p className="text-[#161BA069] font-medium">diberikan kepada</p>
+            {/* <p className="text-[#161BA069] font-medium">diberikan kepada</p> */}
           </div>
           <h2 className="text-[#6E21E0] font-bold text-3xl">{recipientName}</h2>
           <div>
-            <p className="text-[#161BA069] font-medium">
+            {/* <p className="text-[#161BA069] font-medium">
               Selamat atas pencapaian sebagai
-            </p>
+            </p> */}
             <h3 className="text-[#60B3FF] font-bold tracking-tighter text-2xl">
               {courseTitle || "Achievement"}
             </h3>
           </div>
           <p className="text-[#161BA069] font-medium">{description || ""}</p>
-          <div className="mt-10 flex justify-between items-center px-10">
-            <div className="space-y-4">
-              <div className="border-b-2 w-50 text-center text-[#161BA069] font-bold text-lg">
-                Hormat kami
-              </div>
+
+          {/* Date display */}
+          {date && (
+            <div className="flex flex-col items-center text-center mt-10 space-y-2">
+              <div className="w-32 border-b-2 border-[#161BA069] mt-10" />
               <p className="text-center bg-clip-text text-transparent bg-gradient-to-b from-[#FA54CE] to-[#AC06F2] text-sm font-medium">
-                {date || "DATE"}
+                {date}
               </p>
+              <p className="text-xs text-[#161BA069]">Date</p>
             </div>
-            <div className="space-y-4">
-              <div className="border-b-2 w-50 text-center text-[#161BA069] font-bold text-lg">
-                Hormat kami
+          )}
+
+          <div className="mt-10 flex gap-8 justify-center items-center px-10">
+            {/* Signature 1 - Only show if name is provided */}
+            {signatoryName1 && (
+              <div className="flex flex-col items-center text-center space-y-2">
+                {signatureUrl1 && (
+                  <img
+                    src={signatureUrl1}
+                    alt={signatoryName1}
+                    className="w-24 h-16 object-contain"
+                  />
+                )}
+                {!signatureUrl1 && (
+                  <div className="w-32 border-b-2 border-[#161BA069]" />
+                )}
+                <p className="text-center bg-clip-text text-transparent bg-gradient-to-b from-[#FA54CE] to-[#AC06F2] text-sm font-medium">
+                  {signatoryName1}
+                </p>
+                {signatoryTitle1 && (
+                  <p className="text-xs text-[#161BA069]">{signatoryTitle1}</p>
+                )}
               </div>
-              <p className="text-center bg-clip-text text-transparent bg-gradient-to-b from-[#FA54CE] to-[#AC06F2] text-sm font-medium">
-                {signatoryName1 || "SIGNATURE"}
-              </p>
-            </div>
+            )}
+
+            {/* Signature 2 - Only show if name is provided */}
+            {signatoryName2 && (
+              <div className="flex flex-col items-center text-center space-y-2">
+                {signatureUrl2 && (
+                  <img
+                    src={signatureUrl2}
+                    alt={signatoryName2}
+                    className="w-24 h-16 object-contain"
+                  />
+                )}
+                {!signatureUrl2 && (
+                  <div className="w-32 border-b-2 border-[#161BA069]" />
+                )}
+                <p className="text-center bg-clip-text text-transparent bg-gradient-to-b from-[#FA54CE] to-[#AC06F2] text-sm font-medium">
+                  {signatoryName2}
+                </p>
+                {signatoryTitle2 && (
+                  <p className="text-xs text-[#161BA069]">{signatoryTitle2}</p>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>

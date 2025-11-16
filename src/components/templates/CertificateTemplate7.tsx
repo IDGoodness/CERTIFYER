@@ -68,11 +68,15 @@ export default function CertificateTemplate7({
 
   return (
     <div className={`${containerClass} ${transformClass} bg-transparent`}>
-      <div className="flex shadow-md rounded-sm relative overflow-hidden bg-white"
-      style={{width: "700px"}}>
+      <div
+        className="flex shadow-md rounded-sm relative overflow-hidden bg-white"
+        style={{ width: "700px" }}
+      >
         <div className="flex flex-col gap-10 items-start w-3/4 p-10 border">
-          <div className="space-y-2"
-          style={{ fontFamily: "'Libre Baskerville', serif" }}>
+          <div
+            className="space-y-2"
+            style={{ fontFamily: "'Libre Baskerville', serif" }}
+          >
             <h2 className="font-bold text-4xl">CERTIFICATE</h2>
             <p>OF ACHIEVEMENT</p>
             <div className="flex gap-4">
@@ -85,31 +89,45 @@ export default function CertificateTemplate7({
           </div>
 
           <div className="space-y-4">
-            <p className="text-gray-400 uppercase font-medium">This is proudly presented to</p>
-            <p className="font-bold text-amber-900 text-3xl border-b border-[#6F6A5B] w-3/4"
-            style={{fontFamily: "'Momo Signature', cursive"}}>
+            <p className="text-gray-400 uppercase font-medium">
+              This is proudly presented to
+            </p>
+            <p
+              className="font-bold text-amber-900 text-3xl border-b border-[#6F6A5B] w-3/4"
+              style={{ fontFamily: "'Momo Signature', cursive" }}
+            >
               {recipientName}
             </p>
-            <p className="text-[#5A5549] text-sm max-w-sm">{description}</p>
+            <p className="text-[#5A5549] text-sm max-w-sm">{description || "lorem ipsum dolor sit amet, consectetur adipiscing elit." }</p>
           </div>
 
-          <div className="flex items-end justify-between w-3/4">
-            <div className="flex flex-col gap-2 text-sm">
-              <p className="font-bold border-b border-[#6F6A5B]">{signatoryName1}</p>
-              <p className="text-sm">{signatoryTitle1}</p>
+          {signatoryName1 && (
+            <div className="flex items-end justify-between w-3/4">
+              <div className="flex flex-col gap-2 text-sm">
+                <img src={signatureUrl1} alt={signatoryName1} className='w-24 h-16 object-contain' />
+                <p className="font-bold border-b border-[#6F6A5B] -mt-10">
+                  {signatoryName1}
+                </p>
+                <p className="text-sm">{signatoryTitle1}</p>
+              </div>
+              {/* Date Display */}
+              {date && (
+                <div className="flex flex-col items-end gap-2 text-sm">
+                  <p className="uppercase">Presented on</p>
+                  <p>{date}</p>
+                </div>
+              )}
             </div>
-
-            <div className="flex flex-col items-end gap-2 text-sm">
-              <img src={VectorImg} alt="" className="w-1/3" />
-              <p className="uppercase">Presented on</p>
-              <p>{formattedDate}</p>
-            </div>
-          </div>
+          )}
         </div>
 
         {/* Right side decorations */}
         <div className="">
-          <img src={DecorImg} alt="" className="absolute right-0 top-0 h-full object-cover" />
+          <img
+            src={DecorImg}
+            alt=""
+            className="absolute right-0 top-0 h-full object-cover"
+          />
           {/* <img src={Medal2Img} alt="" className="absolute right-8 bottom-8 w-1/6" /> */}
         </div>
       </div>

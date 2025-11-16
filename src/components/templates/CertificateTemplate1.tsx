@@ -31,11 +31,11 @@ export default function CertificateTemplate1({
   organizationName = "Your Organization",
   organizationLogo,
   organizationSlogan = "slogan text here",
-  signatoryName1 = "John Smith",
-  signatoryTitle1 = "Director",
+  signatoryName1,
+  signatoryTitle1,
   signatureUrl1,
-  signatoryName2 = "Sammi Smith",
-  signatoryTitle2 = "President",
+  signatoryName2,
+  signatoryTitle2,
   signatureUrl2,
   mode = "student",
 }: CertificateTemplate1Props) {
@@ -76,7 +76,7 @@ export default function CertificateTemplate1({
         {/* Main Certificate Container - Landscape A4 proportions */}
         <div className="shadow-xl w-3xl px-20 space-y-4 py-10 rounded-lg mt-10">
           <div className="flex justify-between items-center p-4">
-            <img src={vector2} alt="" className="w-40" style={ {width: 80} } />
+            <img src={vector2} alt="" className="w-40" style={{ width: 80 }} />
             <div className="flex flex-col items-end text-[#5D5D5D]">
               <h2
                 className="font-bold text-3xl uppercase"
@@ -89,7 +89,8 @@ export default function CertificateTemplate1({
             <div className="flex flex-col items-center text-[#BE8C2C]">
               <img
                 src={organizationLogo || vecto}
-                className="w-40" style={{width: 30}}
+                className="w-40"
+                style={{ width: 30 }}
                 alt={organizationName}
               />
               <h3 className="font-bold text-lg">{organizationName}</h3>
@@ -108,9 +109,9 @@ export default function CertificateTemplate1({
           >
             {recipientName}
           </p>
-            <p className="text-center font-bold uppercase text-sm text-[#5d5d5d]">
-                for successfully completing the course <br /> titled
-            </p>
+          <p className="text-center font-bold uppercase text-sm text-[#5d5d5d]">
+            for successfully completing the course <br /> titled
+          </p>
 
           <p
             className="text-center text-xl font-semibold"
@@ -131,26 +132,33 @@ export default function CertificateTemplate1({
             </div>
 
             <div className="space-y-6 text-center">
-              {/* Primary signature block */}
-              <div>
-                <div className="w-40 mx-auto">
-                  {signatureUrl1 ? (
-                    <img
-                      src={signatureUrl1}
-                      alt={signatoryName1}
-                      className="w-full object-contain"
-                    />
-                  ) : (
-                    <div className="border-b-2 w-full" />
+              {/* Primary signature block - Only show if name is provided */}
+              {signatoryName1 && (
+                <div>
+                  <div className="w-40 mx-auto">
+                    {signatureUrl1 ? (
+                      <img
+                        src={signatureUrl1}
+                        alt={signatoryName1}
+                        className="w-full object-contain"
+                      />
+                    ) : (
+                      <div className="border-b-2 w-full" />
+                    )}
+                  </div>
+                  <p className="text-center text-sm font-medium mt-2">
+                    {signatoryName1}
+                  </p>
+                  {signatoryTitle1 && (
+                    <p className="text-center text-xs text-gray-600 mt-1">
+                      {signatoryTitle1}
+                    </p>
                   )}
                 </div>
-                <p className="text-center text-sm font-medium mt-2">
-                  {signatoryName1}
-                </p>
-              </div>
+              )}
 
-              {/* Optional second signature */}
-              {/* {signatoryName2 || signatureUrl2 ? (
+              {/* Optional second signature - Only show if name is provided */}
+              {signatoryName2 && (
                 <div>
                   <div className="w-40 mx-auto">
                     {signatureUrl2 ? (
@@ -163,13 +171,16 @@ export default function CertificateTemplate1({
                       <div className="border-b-2 w-full" />
                     )}
                   </div>
-                  {signatoryName2 && (
-                    <p className="text-center text-sm font-medium mt-2">
-                      {signatoryName2}
+                  <p className="text-center text-sm font-medium mt-2">
+                    {signatoryName2}
+                  </p>
+                  {signatoryTitle2 && (
+                    <p className="text-center text-xs text-gray-600 mt-1">
+                      {signatoryTitle2}
                     </p>
                   )}
                 </div>
-              ) : null} */}
+              )}
             </div>
           </div>
         </div>

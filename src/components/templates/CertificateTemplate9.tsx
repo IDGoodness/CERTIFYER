@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import first from "../../assets/1st.svg";
 
 interface CertificateTemplate9Props {
   header?: string;
@@ -13,6 +12,9 @@ interface CertificateTemplate9Props {
   signatoryName1?: string;
   signatoryTitle1?: string;
   signatureUrl1?: string;
+  signatoryName2?: string;
+  signatoryTitle2?: string;
+  signatureUrl2?: string;
   mode?: "student" | "template-selection";
 }
 
@@ -25,9 +27,12 @@ export default function CertificateTemplate9({
   isPreview = false,
   organizationName,
   organizationLogo,
-  signatoryName1 = "Hormat kami",
-  signatoryTitle1 = "",
+  signatoryName1,
+  signatoryTitle1,
   signatureUrl1,
+  signatoryName2,
+  signatoryTitle2,
+  signatureUrl2,
   mode = "student",
 }: CertificateTemplate9Props) {
   const scale = mode === "student" ? 0.3 : 1;
@@ -42,7 +47,8 @@ export default function CertificateTemplate9({
       const link = document.createElement("link");
       link.id = id;
       link.rel = "stylesheet";
-      link.href = "https://fonts.googleapis.com/css2?family=Montserrat&display=swap";
+      link.href =
+        "https://fonts.googleapis.com/css2?family=Montserrat&display=swap";
       document.head.appendChild(link);
     }
   }, []);
@@ -50,7 +56,7 @@ export default function CertificateTemplate9({
   return (
     <div
       className={containerClass}
-      style={{ transform: `scale(${scale})`, backgroundColor: "transparent"}}
+      style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
     >
       <div
         className="flex justify-center items-center shadow-md w-3xl p-10 rounded-sm relative text-[#4D4D4D] font-['Montserrat'] overflow-hidden"
@@ -72,21 +78,21 @@ export default function CertificateTemplate9({
             style={{
               border: "2px solid",
               bottom: "100px",
-               borderImage: "linear-gradient(to bottom, #FDBA18, #FA54CE) 1"
+              borderImage: "linear-gradient(to bottom, #FDBA18, #FA54CE) 1",
             }}
           />
           <div
             className="w-14 h-14 absolute left-14 bottom-4 rotate-45 z-40"
             style={{
               border: "2px solid",
-               borderImage: "linear-gradient(to bottom, #FDBA18, #FA54CE) 1"
+              borderImage: "linear-gradient(to bottom, #FDBA18, #FA54CE) 1",
             }}
           />
           <div
             className="w-16 h-50 absolute -left-4 -top-4 rotate-50 z-20"
             style={{
               border: "2px solid",
-              borderImage: "linear-gradient(to top, #FDBA18, #FA54CE) 1"
+              borderImage: "linear-gradient(to top, #FDBA18, #FA54CE) 1",
             }}
           />
           <div
@@ -140,22 +146,14 @@ export default function CertificateTemplate9({
           <div
             className="h-full w-6 absolute right-4 top-0"
             style={{
-             background: "linear-gradient(to left, #FF9C39, #FA54CE)",
+              background: "linear-gradient(to left, #FF9C39, #FA54CE)",
             }}
           />
-          {first && (
-            <img
-              src={String(first)}
-              className="absolute -top-5 -right-5"
-              alt="decoration"
-            />
-          )}
           <div className="mt-6">
             <h3
               className="font-bold text-2xl"
               style={{
-                backgroundImage:
-                  "linear-gradient(to bottom, #FDBA18, #D604DA)",
+                backgroundImage: "linear-gradient(to bottom, #FDBA18, #D604DA)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
@@ -184,45 +182,103 @@ export default function CertificateTemplate9({
           <p className="font-medium" style={{ color: "#FA54CE80" }}>
             {description || ""}
           </p>
-          <div className="mt-10 flex justify-between items-center px-10">
-            <div className="space-y-4">
-              <div
-                className="border-b-2 w-50 text-center font-bold text-lg"
-                style={{ color: "#FA54CE80"}}
-              >
-                Hormat kami
+          <div className="mt-10 flex gap-8 justify-center items-center px-10">
+            {/* Signature 1 - Always show if name is provided */}
+            {signatoryName1 && (
+              <div className="flex flex-col items-center text-center space-y-2">
+                {signatureUrl1 && (
+                  <img
+                    src={signatureUrl1}
+                    alt={signatoryName1}
+                    className="w-24 h-16 object-contain"
+                  />
+                )}
+                {!signatureUrl1 && (
+                  <div
+                    className="w-32 border-b-2"
+                    style={{ borderColor: "#FA54CE80" }}
+                  />
+                )}
+                <p
+                  className="text-sm font-medium"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(to bottom, #FFA246, #FA54CE)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  {signatoryName1}
+                </p>
+                {signatoryTitle1 && (
+                  <p className="text-xs" style={{ color: "#FA54CE80" }}>
+                    {signatoryTitle1}
+                  </p>
+                )}
               </div>
-              <p
-                className="text-center text-sm font-medium"
-                style={{
-                  backgroundImage: "linear-gradient(to bottom, #FFA246, #FA54CE)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                {date || "DATE"}
-              </p>
-            </div>
-            <div className="space-y-4">
-              <div
-                className="border-b-2 w-50 text-center font-bold text-lg"
-                style={{ color: "#161BA069" }}
-              >
-                Hormat kami
+            )}
+
+            {/* Signature 2 - Always show if name is provided */}
+            {signatoryName2 && (
+              <div className="flex flex-col items-center text-center space-y-2">
+                {signatureUrl2 && (
+                  <img
+                    src={signatureUrl2}
+                    alt={signatoryName2}
+                    className="w-24 h-16 object-contain"
+                  />
+                )}
+                {!signatureUrl2 && (
+                  <div
+                    className="w-32 border-b-2"
+                    style={{ borderColor: "#FA54CE80" }}
+                  />
+                )}
+                <p
+                  className="text-sm font-medium"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(to bottom, #FFA246, #FA54CE)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  {signatoryName2}
+                </p>
+                {signatoryTitle2 && (
+                  <p className="text-xs" style={{ color: "#FA54CE80" }}>
+                    {signatoryTitle2}
+                  </p>
+                )}
               </div>
-              <p
-                className="text-center text-sm font-medium"
-                style={{
-                  backgroundImage: "linear-gradient(to bottom, #FFA246, #FA54CE)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                {signatoryName1 || "SIGNATURE"}
-              </p>
-            </div>
+            )}
+
+            {/* Date display */}
+            {date && (
+              <div className="flex flex-col items-center text-center space-y-2">
+                <div
+                  className="w-32 border-b-2"
+                  style={{ borderColor: "#FA54CE80" }}
+                />
+                <p
+                  className="text-sm font-medium"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(to bottom, #FFA246, #FA54CE)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  {date}
+                </p>
+                <p className="text-xs" style={{ color: "#FA54CE80" }}>
+                  Date
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>
