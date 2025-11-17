@@ -70,7 +70,7 @@ export default function CertificateTemplate2({
     : "min-w-[1056px] flex justify-center items-center";
 
   const certificateClass = isPreview
-    ? "flex flex-col justify-center items-center relative shadow-2xl"
+    ? "flex flex-col justify-center items-center relative"
     : "flex flex-col justify-center items-center relative";
 
   return (
@@ -83,7 +83,7 @@ export default function CertificateTemplate2({
         className={certificateClass}
         style={{ backgroundColor: "#FEFEFD" }}
       >
-        <div className="flex justify-center bg-[#FEFEFD] items-center shadow-md w-3xl px-16 py-10 rounded-lg relative overflow-hidden text-[#4D4D4D]">
+        <div className="flex justify-center bg-[#FEFEFD] items-center px-16 py-10 rounded-lg relative overflow-hidden text-[#4D4D4D] border">
           {/* Repeating wavy background */}
           <div className="z-0 relative w-full h-full">
             {Array.from({ length: 30 }).map((_, i) => (
@@ -105,7 +105,7 @@ export default function CertificateTemplate2({
             <div className="absolute top-0 -right-12">
               <img src={rect} alt="" className="w-11/12" />
             </div>
-            <div className="absolute bottom-0 -right-2">
+            <div className="absolute bottom-0 right-0">
               <img src={rect2} alt="" className="w-11/12" />
             </div>
             <div className="absolute bottom-0 left-0">
@@ -166,9 +166,10 @@ export default function CertificateTemplate2({
 
               <div className="flex items-center justify-between w-full mt-10">
                 <div className="flex gap-10 items-center">
-                  <div className="text-center">
-                    <div className="border-b-2 w-40 text-center" />
+                  <div className="text-center mt-10">
+                    <div className="w-40 text-center" />
                     <p className="mt-2 text-sm">{date}</p>
+                    <p className="font-bold" >Date</p>
                   </div>
                   {/* Only show signature 1 if name is provided */}
                   {signatoryName1 && (
