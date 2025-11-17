@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import vecto from "../../assets/Vecto.svg";
 
 interface CertificateTemplate8Props {
   header?: string;
@@ -149,7 +150,7 @@ export default function CertificateTemplate8({
               background: "linear-gradient(to left, #FF9C39, #FA54CE)",
             }}
           />
-          <div className="mt-6">
+          <div className="mt-6 flex flex-row space-x-4 items-center justify-between">
             <h3
               className="font-bold text-2xl"
               style={{
@@ -161,10 +162,36 @@ export default function CertificateTemplate8({
             >
               {header || "Certificate of Completion"}
             </h3>
-            {/* <p className="font-medium" style={{ color: "#FA54CE80" }}>
-              diberikan kepada
-            </p> */}
+
+            <div className="text-center">
+              <div className="flex flex-col items-center" >
+                <img
+                  src={organizationLogo || vecto}
+                  alt={organizationName}
+                  className="w-40 text-center "
+                  style={{ width: 50 }}
+                />
+
+                <p
+                  className="text-xs text-center"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(to bottom, #FDBA18, #D604DA)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    marginTop: -14,
+                    marginRight: 5,
+                  }}
+                >
+                  {organizationName}
+                </p>
+              </div>
+            </div>
           </div>
+          <p className="italic text-lg" style={{ color: "#FA54CE80" }}>
+            This certificate is presented to
+          </p>
           <h2 className="font-bold text-3xl" style={{ color: "#FD8207" }}>
             {recipientName}
           </h2>
@@ -240,7 +267,7 @@ export default function CertificateTemplate8({
             {/* Date display */}
             {date && (
               <div className="flex flex-col items-center text-center">
-                <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                <div className="w-32 mt-20 mb-2" />
                 <div
                   className="text-sm font-medium"
                   style={{ color: "#4D4D4D" }}
