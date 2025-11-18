@@ -32,11 +32,11 @@ export default function CertificateTemplate2({
   isPreview = false,
   organizationName = "Your Organization",
   organizationLogo,
-  signatoryName1 = "John Smith",
-  signatoryTitle1 = "Director",
+  signatoryName1,
+  signatoryTitle1,
   signatureUrl1,
-  signatoryName2 = "Sammi Smith",
-  signatoryTitle2 = "President",
+  signatoryName2,
+  signatoryTitle2,
   signatureUrl2,
   mode = "student",
 }: CertificateTemplate2Props) {
@@ -70,18 +70,8 @@ export default function CertificateTemplate2({
     : "min-w-[1056px] flex justify-center items-center";
 
   const certificateClass = isPreview
-    ? "flex flex-col justify-center items-center relative w-[100px] shadow-lg"
+    ? "flex flex-col justify-center items-center relative"
     : "flex flex-col justify-center items-center relative";
-
-  // Normalize signatory data into a single array so we can render uniformly
-  const mergedSignatories: Array<{
-    src?: string;
-    name?: string;
-    title?: string;
-  }> = [
-    { src: signatureUrl1, name: signatoryName1, title: signatoryTitle1 },
-    { src: signatureUrl2, name: signatoryName2, title: signatoryTitle2 },
-  ];
 
   return (
     <div
@@ -93,7 +83,7 @@ export default function CertificateTemplate2({
         className={certificateClass}
         style={{ backgroundColor: "#FEFEFD" }}
       >
-        <div className="flex justify-center bg-[#FEFEFD] items-center w-3xl shadow-md px-16 py-10 rounded-lg relative overflow-hidden text-[#4D4D4D]">
+        <div className="flex justify-center bg-[#FEFEFD] items-center px-16 py-10 rounded-lg relative overflow-hidden text-[#4D4D4D] border">
           {/* Repeating wavy background */}
           <div className="z-0 relative w-full h-full">
             {Array.from({ length: 30 }).map((_, i) => (
@@ -110,22 +100,22 @@ export default function CertificateTemplate2({
           {/* Corner decorations */}
           <div className="z-10">
             <div className="absolute top-0 left-0">
-              <img src={rect4} alt="" className="w-80" />
+              <img src={rect4} alt="" className="w-11/12" />
             </div>
-            <div className="absolute top-0 right-0">
-              <img src={rect} alt="" className="w-80" />
+            <div className="absolute top-0 -right-12">
+              <img src={rect} alt="" className="w-11/12" />
             </div>
             <div className="absolute bottom-0 right-0">
-              <img src={rect2} alt="" className="w-80" />
+              <img src={rect2} alt="" className="w-11/12" />
             </div>
             <div className="absolute bottom-0 left-0">
-              <img src={rect3} alt="" className="w-80" />
+              <img src={rect3} alt="" className="w-11/12" />
             </div>
           </div>
 
           <div className="bg-transparent rounded p-6 w-full z-40">
             <div className="flex flex-col items-center gap-6">
-              <div className="flex gap-10 items-center">
+              <div className="flex gap-1 items-center">
                 <div className="flex items-center justify-center w-24 h-auto rounded-full overflow-hidden">
                   {organizationLogo ? (
                     <img
@@ -156,17 +146,17 @@ export default function CertificateTemplate2({
               </p>
 
               <p
-                className="text-4xl text-center"
+                className="text-xl text-center mx-20"
                 style={{
                   fontFamily: "'Tangerine', cursive",
                   fontWeight: 700,
                   borderBottom: "2px solid #000",
                   paddingBottom: "8px",
-                  paddingLeft: "220px",
-                  paddingRight: "220px",
+                  paddingLeft: "160px",
+                  paddingRight: "160px",
                 }}
               >
-                {/* {recipientName} */}John Doe
+                {recipientName}
               </p>
 
               <p className="text-center max-w-2xl px-8">
@@ -176,44 +166,68 @@ export default function CertificateTemplate2({
 
               <div className="flex items-center justify-between w-full mt-10">
                 <div className="flex gap-10 items-center">
-                  <div className="text-center">
-                    <div className="border-b-2 w-40 text-center" />
-                    <p className="mt-2">{date}</p>
+                  <div className="text-center mt-10">
+                    <div className="w-40 text-center" />
+                    <p className="mt-2 text-sm">{date}</p>
+                    <p className="font-bold" >Date</p>
                   </div>
-                  {/* <div className="text-center">
-                    <div className="border-b-2 w-40 text-center" />
-                    <p className="mt-2">{signatureUrl1 || "SIGNATURE"}</p>
-                  </div> */}
-
-                  <div className="flex gap-4 items-center">
-                    {mergedSignatories.map((s, idx) =>
-                      s.src ? (
-                        <div
-                          key={idx}
-                          className="flex flex-col items-center text-center"
-                        >
-                          <img
-                            src={s.src}
-                            alt={`sig-${idx}`}
-                            className="w-10 h-10 rounded-full object-cover"
-                          />
-                          {s.name && (
-                            <div className="text-sm mt-1">{s.name}</div>
-                          )}
-                          {s.title && (
-                            <div className="text-xs text-gray-600">
-                              {s.title}
-                            </div>
-                          )}
-                        </div>
-                      ) : (
-                        <div
-                          key={idx}
-                          className="w-10 h-10 rounded-full bg-gray-600"
+                  {/* Only show signature 1 if name is provided */}
+                  {signatoryName1 && (
+                    <div className="text-center">
+                      {signatureUrl1 ? (
+                        <img
+                          src={signatureUrl1}
+                          alt={signatoryName1}
+                          className="w-40 h-20 object-contain mb-1"
                         />
-                      )
-                    )}
-                  </div>
+                      ) : (
+                        <div className="border-b-2 w-40 text-center" />
+                      )}
+                      <p className="mt-2 text-sm font-medium">
+                        {signatoryName1}
+                      </p>
+                      {signatoryTitle1 && (
+                        <p className="text-xs text-gray-600">
+                          {signatoryTitle1}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                  {/* Only show signature 2 if name is provided */}
+                  {signatoryName2 && (
+                    <div className="text-center">
+                      {signatureUrl2 ? (
+                        <img
+                          src={signatureUrl2}
+                          alt={signatoryName2}
+                          className="w-40 h-20 object-contain mb-1"
+                        />
+                      ) : (
+                        <div className="border-b-2 w-40 text-center" />
+                      )}
+                      <p className="mt-2 text-sm font-medium">
+                        {signatoryName2}
+                      </p>
+                      {signatoryTitle2 && (
+                        <p className="text-xs text-gray-600">
+                          {signatoryTitle2}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex gap-4 items-center">
+                  {/* Logo placeholder circles */}
+                  {organizationLogo && (
+                    <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden flex items-center justify-center">
+                      <img
+                        src={organizationLogo}
+                        alt="org"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

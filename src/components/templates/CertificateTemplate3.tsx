@@ -1,6 +1,7 @@
 import React from "react";
-// Import the Container2 asset for this template
-import ribbonSrc from "../../assets/Container2.svg";
+import ribbonSrc from "../../assets/Ribbon 2.svg"
+
+
 
 interface CertificateTemplate3Props {
   header?: string;
@@ -44,7 +45,7 @@ export default function CertificateTemplate3({
     ? {
         width: "100%",
         maxWidth: 1056,
-        height: "600px",
+        height: "auto",
         padding: "32px",
         boxSizing: "border-box",
       }
@@ -61,11 +62,11 @@ export default function CertificateTemplate3({
             style={{
               background: "#000",
               width: "100%",
-              height: previewMode ? 100 : 120,
+              height: previewMode ? 80 : 80,
               transform: "skewY(5deg)",
               position: "absolute",
               left: 0,
-              top: previewMode ? "-40px" : -40,
+              top: previewMode ? "-30px" : "-30px",
               zIndex: 5,
             }}
           />
@@ -73,13 +74,13 @@ export default function CertificateTemplate3({
           <div
             style={{
               background: "#FBB33A",
-              width: "25%",
-              height: previewMode ? 90 : 144,
+              width: "100%",
+              height: previewMode ? 150 : 150,
               transform: "rotate(30deg)",
               borderRadius: 6,
               position: "absolute",
-              right: previewMode ? "6%" : 40,
-              top: previewMode ? "-40px" : -80,
+              right: previewMode ? "-25%" : "-25%",
+              top: previewMode ? "-130px" : "-130px",
               zIndex: 10,
             }}
           />
@@ -88,11 +89,11 @@ export default function CertificateTemplate3({
             style={{
               background: "#e5e7eb",
               width: "50%",
-              height: previewMode ? 60 : 60,
+              height: previewMode ? 44 : 44,
               transform: "rotate(-4deg)",
               position: "absolute",
-              left: previewMode ? "-2%" : -16,
-              top: previewMode ? "0%" : 20,
+              left: previewMode ? "-2%" : "-2%",
+              top: previewMode ? "3%" : "3%",
               zIndex: 0,
             }}
           />
@@ -101,11 +102,11 @@ export default function CertificateTemplate3({
             style={{
               background: "rgba(0,0,0,0.9)",
               width: "100%",
-              height: previewMode ? 80 : 80,
-              transform: "skewY(2deg)",
+              height: previewMode ? 60 : 60,
+              transform: "skewY(-2deg)",
               position: "absolute",
               left: 0,
-              bottom: previewMode ? -16 : -20,
+              bottom: previewMode ? -12 : -12,
               zIndex: 5,
             }}
           />
@@ -114,11 +115,11 @@ export default function CertificateTemplate3({
             style={{
               background: "#e5e7eb",
               width: "100%",
-              height: previewMode ? 40 : 40,
+              height: previewMode ? 28 : 28,
               transform: "skewY(5deg)",
               position: "absolute",
               left: 0,
-              bottom: previewMode ? "6%" : 40,
+              bottom: previewMode ? "6%" : "6%",
               zIndex: 0,
             }}
           />
@@ -126,12 +127,12 @@ export default function CertificateTemplate3({
           <div
             style={{
               background: "#FBB33A",
-              width: "25%",
-              height: previewMode ? 30 : 40,
+              width: "50%",
+              height: previewMode ? 28 : 28,
               transform: "skewY(-10deg) skewX(-10deg)",
               position: "absolute",
-              right: previewMode ? "-4%" : -16,
-              bottom: previewMode ? "8%" : 40,
+              right: previewMode ? "-4%" : "-4%",
+              bottom: previewMode ? "8%" : "8%",
               zIndex: 0,
             }}
           />
@@ -140,51 +141,50 @@ export default function CertificateTemplate3({
             style={{
               background: "#000",
               width: "50%",
-              height: previewMode ? 80 : 80,
+              height: previewMode ? 56 : 56,
               transform: "skewY(-2deg) skewX(-60deg)",
               position: "absolute",
-              right: previewMode ? "-6%" : -40,
-              bottom: previewMode ? "-4%" : -20,
+              right: previewMode ? "-6%" : "-6%",
+              bottom: previewMode ? "-4%" : "-4%",
               zIndex: 5,
             }}
           />
 
-          {ribbonSrc && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={String(ribbonSrc)}
-              alt="ribbon"
-              className="absolute w-24"
-              style={{
-                top: previewMode ? "10%" : 40,
-                right: previewMode ? "5%" : 48,
-                zIndex: 10,
-              }}
-            />
-          )}
+          {/* <img
+            src={ribbonSrc}
+            alt="ribbon"
+            className="absolute"
+            style={{
+              top: previewMode ? "4%" : 40,
+              right: previewMode ? "6%" : 48,
+              zIndex: 10,
+            }}
+          /> */}
 
-          {/* <div
+          <div
             style={{
               background: "#fbb33a",
               position: "absolute",
-              right: previewMode ? "8%" : 76,
-              top: previewMode ? "6%" : 68,
+              right: previewMode ? "8%" : "8%",
+              top: previewMode ? "6%" : "6%",
               zIndex: 10,
               border: "1px solid #c77b00",
-              width: previewMode ? 36 : 48,
-              height: previewMode ? 36 : 48,
+              width: previewMode ? 36 : 36,
+              height: previewMode ? 36 : 36,
               borderRadius: "9999px",
             }}
-          /> */}
+          />
         </div>
 
-        <div className="p-6 w-full flex flex-col items-center gap-6 relative z-20">
-          <div className="text-center">
-            <h2 className="text-4xl tracking-wider font-bold">CERTIFICATE</h2>
+        <div className="p-6 mt-6 w-full flex flex-col items-center gap-6 relative z-20">
+          <div>
+            {/* <h2 className="text-4xl tracking-wider font-bold">CERTIFICATE</h2> */}
             <div className="flex items-center gap-4 text-xl uppercase">
-              <span className="w-10 border" />
-              <p>of Appreciation</p>
-              <span className="w-10 border" />
+              {/* <span className="w-10 border" /> */}
+              <p className="text-3xl tracking-wider uppercase">
+                {header || "Certificate of Appreciation"}{" "}
+              </p>
+              {/* <span className="w-10 border" /> */}
             </div>
           </div>
 
@@ -202,15 +202,76 @@ export default function CertificateTemplate3({
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
           </p>
 
-          <div className="flex gap-10 mt-10 w-full justify-center">
-            <div className="flex items-center gap-2">
-              <p className="border-b-2 w-40 text-center" />
-              <p className="text-center text-sm font-medium">SIGNATURE</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <p className="border-b-2 w-40 text-center" />
-              <p className="text-center text-sm font-medium">DATE</p>
-            </div>
+          <div className="flex gap-8 justify-center items-center mt-5">
+            {/* Signature 1 - Always show if name is provided */}
+            {signatoryName1 && (
+              <div className="flex flex-col items-center text-center" style={{marginTop: -20,}} >
+                {signatureUrl1 && (
+                  <img
+                    src={signatureUrl1}
+                    alt={signatoryName1}
+                    className="w-24 h-16 object-contain" style={{marginBottom: -12}}
+                  />
+                )}
+                {!signatureUrl1 && (
+                  <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                )}
+                <div
+                  className="text-sm font-medium"
+                  style={{ color: "#4D4D4D" }}
+                >
+                  {signatoryName1}
+                </div>
+                {signatoryTitle1 && (
+                  <div className="text-xs font-bold">
+                    {signatoryTitle1}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Signature 2 - Always show if name is provided */}
+            {signatoryName2 && (
+              <div className="flex flex-col items-center text-center">
+                {signatureUrl2 && (
+                  <img
+                    src={signatureUrl2}
+                    alt={signatoryName2}
+                    className="w-24 h-16 object-contain" style={{marginBottom: -12}}
+                  />
+                )}
+                {!signatureUrl2 && (
+                  <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                )}
+                <div
+                  className="text-sm font-medium"
+                  style={{ color: "#4D4D4D" }}
+                >
+                  {signatoryName2}
+                </div>
+                {signatoryTitle2 && (
+                  <div className="text-xs">
+                    {signatoryTitle2}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Date display */}
+            {date && (
+              <div className="flex flex-col items-center text-center">
+                <div className="w-32 mt-5 mb-2" />
+                <div
+                  className="text-sm font-medium"
+                  style={{ color: "#4D4D4D" }}
+                >
+                  {date}
+                </div>
+                <div className="text-xs font-bold ">
+                  Date
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

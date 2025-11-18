@@ -37,11 +37,11 @@ export default function CertificateTemplate6({
   isPreview = false,
   organizationName = "Your Organization",
   organizationLogo,
-  signatoryName1 = "John Smith",
-  signatoryTitle1 = "Director",
+  signatoryName1,
+  signatoryTitle1,
   signatureUrl1,
-  signatoryName2 = "Sammi Smith",
-  signatoryTitle2 = "President",
+  signatoryName2,
+  signatoryTitle2,
   signatureUrl2,
   mode = "student",
   // Legacy props
@@ -54,7 +54,7 @@ export default function CertificateTemplate6({
   const displayProgramName = programName || courseTitle;
   const displayIssueDate = issueDate || date;
   const displayRecipientName = recipientName;
-  
+
   // Format date
   const formattedDate = new Date(displayIssueDate).toLocaleDateString("en-US", {
     year: "numeric",
@@ -160,7 +160,7 @@ export default function CertificateTemplate6({
             <p className="text-sm text-gray-600 uppercase tracking-wide mb-4">
               This certificate is proudly presented to
             </p>
-            
+
             {/* Recipient Name */}
             <div className="mb-6">
               <h3
@@ -182,7 +182,8 @@ export default function CertificateTemplate6({
 
             {/* Description */}
             <p className="text-xs text-gray-600 leading-relaxed max-w-2xl mx-auto">
-              {description || `In recognition of outstanding achievement and exceptional dedication to ${displayProgramName}. This certificate acknowledges your commitment to excellence and significant contributions that have made a lasting impact on our organization and community.`}
+              {description ||
+                `In recognition of outstanding achievement and exceptional dedication to ${displayProgramName}. This certificate acknowledges your commitment to excellence and significant contributions that have made a lasting impact on our organization and community.`}
             </p>
           </div>
 
@@ -191,26 +192,66 @@ export default function CertificateTemplate6({
             {/* Date */}
             <div className="text-left">
               <div className="text-xs text-gray-500 uppercase mb-1">Date</div>
-              <div className="text-sm text-gray-800 border-b border-gray-400 pb-1 min-w-[150px]">
-                {formattedDate}
+              <div className="text-sm text-gray-800  pb-1 min-w-[150px]">
+                {date}
               </div>
             </div>
 
-            {/* Signature */}
-            <div className="text-center">
-              <div className="text-xs text-gray-500 uppercase mb-1">Signature</div>
-              {(signatureUrl1 || (signatories.length > 0 && signatories[0].signatureUrl)) ? (
-                <img
-                  src={signatureUrl1 || signatories[0].signatureUrl}
-                  alt="Signature"
-                  className="h-12 mx-auto mb-1 object-contain"
-                  style={{ maxWidth: '180px' }}
-                />
-              ) : (
-                <div className="h-12 w-40 border-b border-gray-400 mb-1" />
+            {/* Signatures - Support up to 2 */}
+            <div className="flex gap-8">
+              {/* Signature 1 - Only show if name is provided */}
+              {signatoryName1 && (
+                <div className="text-center">
+                  <div className="text-xs text-gray-500 uppercase mb-1">
+                    Signature
+                  </div>
+                  {signatureUrl1 ? (
+                    <img
+                      src={signatureUrl1}
+                      alt={signatoryName1}
+                      className="h-12 mx-auto mb-1 object-contain"
+                      style={{ maxWidth: "180px" }}
+                    />
+                  ) : (
+                    <div className="h-12 w-40 border-b border-gray-400 mb-1" />
+                  )}
+                  <div className="text-xs text-gray-600 font-medium">
+                    {signatoryName1}
+                  </div>
+                  {signatoryTitle1 && (
+                    <div className="text-xs text-gray-500">
+                      {signatoryTitle1}
+                    </div>
+                  )}
+                </div>
               )}
-              <div className="text-xs text-gray-600">{signatoryName1 || (signatories.length > 0 ? signatories[0].name : 'John Smith')}</div>
-              <div className="text-xs text-gray-500">{signatoryTitle1 || (signatories.length > 0 ? signatories[0].title : 'Director')}</div>
+
+              {/* Signature 2 - Only show if name is provided */}
+              {signatoryName2 && (
+                <div className="text-center">
+                  <div className="text-xs text-gray-500 uppercase mb-1">
+                    Signature
+                  </div>
+                  {signatureUrl2 ? (
+                    <img
+                      src={signatureUrl2}
+                      alt={signatoryName2}
+                      className="h-12 mx-auto mb-1 object-contain"
+                      style={{ maxWidth: "180px" }}
+                    />
+                  ) : (
+                    <div className="h-12 w-40 border-b border-gray-400 mb-1" />
+                  )}
+                  <div className="text-xs text-gray-600 font-medium">
+                    {signatoryName2}
+                  </div>
+                  {signatoryTitle2 && (
+                    <div className="text-xs text-gray-500">
+                      {signatoryTitle2}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Verification Seals */}

@@ -87,9 +87,15 @@ export default function CertificateRenderer({
     
     case "6":
       return <CertificateTemplate6 {...templateProps} />;
-
+    
     case "7":
-      return <CertificateTemplate10 {...templateProps} />;
+      return <CertificateTemplate7 {...templateProps} />;
+    
+    case "8":
+      return <CertificateTemplate8 {...templateProps} />;
+
+    case "9":
+      return <CertificateTemplate9 {...templateProps} />;
     
     // All other template IDs fall back to Template 1
     // This ensures the system never breaks even if an invalid ID is used
