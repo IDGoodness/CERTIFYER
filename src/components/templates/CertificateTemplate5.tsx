@@ -47,7 +47,7 @@ export default function CertificateTemplate5({
   return (
     <div
       className={containerClass}
-      style={{ transform: `scale(${scale})`, backgroundColor: "transparent"}}
+      style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
     >
       <div className="flex justify-center bg-gradient-to-l from-[#161BA0] to-[#AC06F2] items-center shadow-md w-3xl p-10 rounded-sm relative text-[#4D4D4D] font-[Montserrat] overflow-hidden">
         <div>
@@ -66,11 +66,11 @@ export default function CertificateTemplate5({
         <div className="bg-gradient-to-b from-[#DDB4FB] to-[#FFFFFF] rounded space-y-6 relative p-10 w-full z-30">
           <div className="bg-gradient-to-l from-[#161BA0] to-[#AC06F2] w-full h-6 absolute left-0 top-4" />
           <div className="bg-gradient-to-b from-[#161BA0] to-[#AC06F2] h-full w-6 absolute right-4 top-0" />
-            <img
-              src={secondaryAsset}
-              className="absolute -top-5 -right-5"
-              alt="decoration"
-            />
+          <img
+            src={secondaryAsset}
+            className="absolute -top-5 -right-5"
+            alt="decoration"
+          />
           <div className="mt-6">
             <h3 className="font-bold text-2xl bg-clip-text text-transparent bg-gradient-to-b from-[#FA54CE] to-[#6E21E0]">
               {header}
@@ -86,63 +86,88 @@ export default function CertificateTemplate5({
               {courseTitle || "Achievement"}
             </h3>
           </div>
-          <p className="text-[#161BA069] font-medium">{description || ""}</p>
+          <p className="text-[#161BA069] font-medium">
+            {description || "Lorem ipsum lorem"}
+          </p>
 
-          {/* Date display */}
-          {date && (
-            <div className="flex flex-col items-center text-center mt-10 space-y-2">
-              <div className="w-32 border-b-2 border-[#161BA069] mt-10" />
-              <p className="text-center bg-clip-text text-transparent bg-gradient-to-b from-[#FA54CE] to-[#AC06F2] text-sm font-medium">
-                {date}
-              </p>
-              <p className="text-xs text-[#161BA069]">Date</p>
+          <div className="mt-20 flex justify-between items-end">
+            <div className="flex gap-8 justify-center items-center mt-5">
+              {/* Signature 1 - Always show if name is provided */}
+              {signatoryName1 && (
+                <div
+                  className="flex flex-col items-center text-center"
+                  style={{ marginTop: -20 }}
+                >
+                  {signatureUrl1 && (
+                    <img
+                      src={signatureUrl1}
+                      alt={signatoryName1}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                  {!signatureUrl1 && (
+                    <div className="w-32 border-b-2 border-[#161BA069] mb-2" />
+                  )}
+                  <div
+                    className="text-center bg-clip-text text-transparent bg-gradient-to-b from-[#FA54CE] to-[#AC06F2] text-sm font-medium"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {signatoryName1}
+                  </div>
+                  {signatoryTitle1 && (
+                    <div className="text-xs font-medium text-[#161BA069]">
+                      {signatoryTitle1}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Signature 2 - Always show if name is provided */}
+              {signatoryName2 && (
+                <div
+                  className="flex flex-col items-center text-center"
+                  style={{ marginTop: -20 }}
+                >
+                  {signatureUrl2 && (
+                    <img
+                      src={signatureUrl2}
+                      alt={signatoryName2}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                  {!signatureUrl2 && (
+                    <div className="w-32 border-b-2 border-[#161BA069] mb-2" />
+                  )}
+                  <div
+                    className="text-center bg-clip-text text-transparent bg-gradient-to-b from-[#FA54CE] to-[#AC06F2] text-sm font-medium"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {signatoryName2}
+                  </div>
+                  {signatoryTitle2 && (
+                    <div className="text-xs font-medium text-[#161BA069]">
+                      {signatoryTitle2}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Date display */}
+              {date && (
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-32 mt-5 mb-2" />
+                  <div
+                    className="text-sm font-medium"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {date}
+                  </div>
+                  <div className="text-xs font-bold ">Date</div>
+                </div>
+              )}
             </div>
-          )}
-
-          <div className="mt-10 flex gap-8 justify-center items-center px-10">
-            {/* Signature 1 - Only show if name is provided */}
-            {signatoryName1 && (
-              <div className="flex flex-col items-center text-center space-y-2">
-                {signatureUrl1 && (
-                  <img
-                    src={signatureUrl1}
-                    alt={signatoryName1}
-                    className="w-24 h-16 object-contain"
-                  />
-                )}
-                {!signatureUrl1 && (
-                  <div className="w-32 border-b-2 border-[#161BA069]" />
-                )}
-                <p className="text-center bg-clip-text text-transparent bg-gradient-to-b from-[#FA54CE] to-[#AC06F2] text-sm font-medium">
-                  {signatoryName1}
-                </p>
-                {signatoryTitle1 && (
-                  <p className="text-xs text-[#161BA069]">{signatoryTitle1}</p>
-                )}
-              </div>
-            )}
-
-            {/* Signature 2 - Only show if name is provided */}
-            {signatoryName2 && (
-              <div className="flex flex-col items-center text-center space-y-2">
-                {signatureUrl2 && (
-                  <img
-                    src={signatureUrl2}
-                    alt={signatoryName2}
-                    className="w-24 h-16 object-contain"
-                  />
-                )}
-                {!signatureUrl2 && (
-                  <div className="w-32 border-b-2 border-[#161BA069]" />
-                )}
-                <p className="text-center bg-clip-text text-transparent bg-gradient-to-b from-[#FA54CE] to-[#AC06F2] text-sm font-medium">
-                  {signatoryName2}
-                </p>
-                {signatoryTitle2 && (
-                  <p className="text-xs text-[#161BA069]">{signatoryTitle2}</p>
-                )}
-              </div>
-            )}
           </div>
         </div>
       </div>
