@@ -153,6 +153,8 @@ export default function CertificateTemplate12({
                 </div>
               )}
 
+              <img src={badge} alt="badge" className="w-10 h-10 object-contain" />
+
               {/* Signature 2 - Always show if name is provided */}
               {signatoryName2 && (
                 <div
@@ -185,7 +187,7 @@ export default function CertificateTemplate12({
               {/* Date display */}
               {date && (
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-32 mt-5 mb-2" />
+                  <div className="w-16 mt-5 mb-2" />
                   <div
                     className="text-sm font-medium"
                     style={{ color: "#4D4D4D" }}
