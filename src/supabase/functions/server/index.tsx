@@ -7,18 +7,20 @@ import { createClient } from "jsr:@supabase/supabase-js@2";
 import * as kv from "./kv_store.tsx";
 
 // Load local .env during development so Deno.env.get(...) picks up values
-// This is a no-op in environments that don't have a .env file.
+// Note: Commented out to avoid Deno.readTextFileSync warnings
+// In Supabase Edge Functions, environment variables are already available via Deno.env
+// If you need to use .env locally, consider using --env-file flag when running Deno
+/*
 try {
-  // Top-level dynamic import; load.ts will populate Deno.env from .env when present
   await import("https://deno.land/std@0.203.0/dotenv/load.ts");
   console.log("✅ Loaded .env into Deno.env (if present)");
 } catch (err) {
-  // Non-fatal: production environments may not allow network imports or .env isn't present
   console.log(
     "ℹ️ .env loader not applied (ok in production):",
     err?.message || err
   );
 }
+*/
 
 const app = new Hono();
 
@@ -375,14 +377,113 @@ const DEFAULT_TEMPLATES = [
   },
   {
     id: "template10",
-    name: "Academic Endurance",
-    description: "Perfect for educational institutions",
+    name: "Certificate of Achievement",
+    description: "Modern design with corner decorations, orange accents, and elegant Playfair Display typography",
     config: {
-      layout: "academic",
+      layout: "modern",
       colors: {
-        primary: "#dc2626",
-        secondary: "#991b1b",
-        accent: "#ea580c",
+        primary: "#1a1a1a",
+        secondary: "#FF8C00",
+        accent: "#FF8C00",
+      },
+    },
+    type: "default",
+    isDefault: true,
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: "template11",
+    name: "Certificate of Excellence",
+    description: "Distinguished design with decorative left border, gradient orange accent, and Cormorant Garamond font",
+    config: {
+      layout: "distinguished",
+      colors: {
+        primary: "#2a2a2a",
+        secondary: "#FF8C00",
+        accent: "#FFA500",
+      },
+    },
+    type: "default",
+    isDefault: true,
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: "template12",
+    name: "Certificate of Completion",
+    description: "Professional design with double border frame, diagonal backgrounds, and Libre Baskerville typography",
+    config: {
+      layout: "professional",
+      colors: {
+        primary: "#1a1a1a",
+        secondary: "#FF8C00",
+        accent: "#000000",
+      },
+    },
+    type: "default",
+    isDefault: true,
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: "template13",
+    name: "Certificate Template 13",
+    description: "Professional design with double border frame, diagonal backgrounds, and Libre Baskerville typography",
+    config: {
+      layout: "professional",
+      colors: {
+        primary: "#1a1a1a",
+        secondary: "#FF8C00",
+        accent: "#000000",
+      },
+    },
+    type: "default",
+    isDefault: true,
+    createdAt: new Date().toISOString(),
+  },
+  
+  {
+    id: "template14",
+    name: "Certificate of Template 14",
+    description: "Professional design with double border frame, diagonal backgrounds, and Libre Baskerville typography",
+    config: {
+      layout: "professional",
+      colors: {
+        primary: "#1a1a1a",
+        secondary: "#FF8C00",
+        accent: "#000000",
+      },
+    },
+    type: "default",
+    isDefault: true,
+    createdAt: new Date().toISOString(),
+  },
+  
+  {
+    id: "template15",
+    name: "Certificate of Template 15",
+    description: "Professional design with double border frame, diagonal backgrounds, and Libre Baskerville typography",
+    config: {
+      layout: "professional",
+      colors: {
+        primary: "#1a1a1a",
+        secondary: "#FF8C00",
+        accent: "#000000",
+      },
+    },
+    type: "default",
+    isDefault: true,
+    createdAt: new Date().toISOString(),
+  },
+  
+  {
+    id: "template15",
+    name: "Certificate of Template 15",
+    description: "Professional design with double border frame, diagonal backgrounds, and Libre Baskerville typography",
+    config: {
+      layout: "professional",
+      colors: {
+        primary: "#1a1a1a",
+        secondary: "#FF8C00",
+        accent: "#000000",
       },
     },
     type: "default",
@@ -2024,7 +2125,14 @@ app.get("/make-server-a611b057/templates", async (c) => {
         t.id === "template6" ||
         t.id === "template7" ||
         t.id === "template8" ||
-        t.id === "template9"
+        t.id === "template9" ||
+        t.id === "template10" ||
+        t.id === "template11" ||
+        t.id === "template12" ||
+        t.id === "template13" ||
+        t.id === "template14" ||
+        t.id === "template15" ||
+        t.id === "template16"
     );
     const premiumTemplates = allTemplates.filter(
       (t) => t.value?.type === "premium"

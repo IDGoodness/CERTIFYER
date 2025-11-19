@@ -130,7 +130,7 @@ export default function CertificateTemplate1({
               "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
           </p>
 
-          <div className="mt-20 flex justify-between px-52 items-end">
+          <div className="mt-20 flex justify-between items-end">
             <div className="flex gap-8 justify-center items-center mt-5">
               {/* Signature 1 - Always show if name is provided */}
               {signatoryName1 && (
@@ -150,20 +150,20 @@ export default function CertificateTemplate1({
                     <div className="w-32 border-b-2 border-gray-400 mb-2" />
                   )}
                   <div
-                    className="text-sm font-medium"
+                    className="text-sm font-bold"
                     style={{ color: "#4D4D4D" }}
                   >
                     {signatoryName1}
                   </div>
                   {signatoryTitle1 && (
-                    <div className="text-xs font-bold">{signatoryTitle1}</div>
+                    <div className="text-xs font-medium">{signatoryTitle1}</div>
                   )}
                 </div>
               )}
 
               {/* Signature 2 - Always show if name is provided */}
               {signatoryName2 && (
-                <div className="flex flex-col items-center text-center">
+                <div className="flex flex-col items-center text-center" style={{ marginTop: -20 }}>
                   {signatureUrl2 && (
                     <img
                       src={signatureUrl2}
@@ -176,13 +176,13 @@ export default function CertificateTemplate1({
                     <div className="w-32 border-b-2 border-gray-400 mb-2" />
                   )}
                   <div
-                    className="text-sm font-medium"
+                    className="text-sm font-bold"
                     style={{ color: "#4D4D4D" }}
                   >
                     {signatoryName2}
                   </div>
                   {signatoryTitle2 && (
-                    <div className="text-xs">{signatoryTitle2}</div>
+                    <div className="text-xs font-medium">{signatoryTitle2}</div>
                   )}
                 </div>
               )}

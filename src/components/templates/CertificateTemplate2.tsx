@@ -84,8 +84,10 @@ export default function CertificateTemplate2({
       className={containerClass}
       style={{ transform: `scale(${scale})`, backgroundColor: "transparent" }}
     >
-      <div className="flex justify-center bg-[#FEFEFD] items-center shadow-md px-16 py-10 rounded-lg relative overflow-hidden text-[#4D4D4D]"
-      style={{width: "700px"}}>
+      <div
+        className="flex justify-center bg-[#FEFEFD] items-center shadow-md px-16 py-10 rounded-lg relative overflow-hidden text-[#4D4D4D]"
+        style={{ width: "700px" }}
+      >
         {/* Repeating wavy background */}
         <div className="z-0 w-full h-full">
           {Array.from({ length: 32 }).map((_, i) => (
@@ -164,42 +166,79 @@ export default function CertificateTemplate2({
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."}
           </p>
 
-          <div className="flex items-center justify-between w-full mt-10">
-            <div className="flex gap-10 items-center">
-              <div className="text-center">
-                <div className="border-b-2 w-40 text-center" />
-                <p className="mt-2">{date}</p>
-              </div>
-              {/* <div className="text-center">
-                    <div className="border-b-2 w-40 text-center" />
-                    <p className="mt-2">{signatureUrl1 || "SIGNATURE"}</p>
-                  </div> */}
-
-              <div className="flex gap-4 items-center">
-                {mergedSignatories.map((s, idx) =>
-                  s.src ? (
-                    <div
-                      key={idx}
-                      className="flex flex-col items-center text-center"
-                    >
-                      <img
-                        src={s.src}
-                        alt={`sig-${idx}`}
-                        className="w-10 h-10 rounded-full object-cover"
-                      />
-                      {s.name && <div className="text-sm mt-1">{s.name}</div>}
-                      {s.title && (
-                        <div className="text-xs text-gray-600">{s.title}</div>
-                      )}
-                    </div>
-                  ) : (
-                    <div
-                      key={idx}
-                      className="w-10 h-10 rounded-full bg-gray-600"
+          <div className="mt-20 flex justify-between items-end">
+            <div className="flex gap-8 justify-center items-center mt-5">
+              {/* Signature 1 - Always show if name is provided */}
+              {signatoryName1 && (
+                <div
+                  className="flex flex-col items-center text-center"
+                  style={{ marginTop: -20 }}
+                >
+                  {signatureUrl1 && (
+                    <img
+                      src={signatureUrl1}
+                      alt={signatoryName1}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
                     />
-                  )
-                )}
-              </div>
+                  )}
+                  {!signatureUrl1 && (
+                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                  )}
+                  <div
+                    className="text-sm font-bold"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {signatoryName1}
+                  </div>
+                  {signatoryTitle1 && (
+                    <div className="text-xs font-medium">{signatoryTitle1}</div>
+                  )}
+                </div>
+              )}
+
+              {/* Signature 2 - Always show if name is provided */}
+              {signatoryName2 && (
+                <div
+                  className="flex flex-col items-center text-center"
+                  style={{ marginTop: -20 }}
+                >
+                  {signatureUrl2 && (
+                    <img
+                      src={signatureUrl2}
+                      alt={signatoryName2}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                  {!signatureUrl2 && (
+                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                  )}
+                  <div
+                    className="text-sm font-bold"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {signatoryName2}
+                  </div>
+                  {signatoryTitle2 && (
+                    <div className="text-xs font-medium">{signatoryTitle2}</div>
+                  )}
+                </div>
+              )}
+
+              {/* Date display */}
+              {date && (
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-32 mt-5 mb-2" />
+                  <div
+                    className="text-sm font-medium"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {date}
+                  </div>
+                  <div className="text-xs font-bold ">Date</div>
+                </div>
+              )}
             </div>
           </div>
         </div>

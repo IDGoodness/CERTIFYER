@@ -180,11 +180,11 @@ export default function CertificateTemplate3({
 
         <div className="p-6 w-full flex flex-col items-center gap-6 relative z-20">
           <div className="text-center">
-            <h2 className="text-4xl tracking-wider font-bold">CERTIFICATE</h2>
+            {/* <h2 className="text-4xl tracking-wider font-bold">CERTIFICATE</h2> */}
             <div className="flex items-center gap-4 text-xl uppercase">
-              <span className="w-10 border" />
-              <p>of Appreciation</p>
-              <span className="w-10 border" />
+              {/* <span className="w-10 border" /> */}
+              <p className="text-4xl tracking-wider font-bold" > {header || "Certificate of Appreciation" } </p>
+              {/* <span className="w-10 border" /> */}
             </div>
           </div>
 
@@ -202,14 +202,79 @@ export default function CertificateTemplate3({
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
           </p>
 
-          <div className="flex gap-10 mt-10 w-full justify-center">
-            <div className="flex items-center gap-2">
-              <p className="border-b-2 w-40 text-center" />
-              <p className="text-center text-sm font-medium">SIGNATURE</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <p className="border-b-2 w-40 text-center" />
-              <p className="text-center text-sm font-medium">DATE</p>
+          <div className="mt-20 flex justify-between items-end">
+            <div className="flex gap-8 justify-center items-center mt-5">
+              {/* Signature 1 - Always show if name is provided */}
+              {signatoryName1 && (
+                <div
+                  className="flex flex-col items-center text-center"
+                  style={{ marginTop: -20 }}
+                >
+                  {signatureUrl1 && (
+                    <img
+                      src={signatureUrl1}
+                      alt={signatoryName1}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                  {!signatureUrl1 && (
+                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                  )}
+                  <div
+                    className="text-sm font-bold"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {signatoryName1}
+                  </div>
+                  {signatoryTitle1 && (
+                    <div className="text-xs font-medium">{signatoryTitle1}</div>
+                  )}
+                </div>
+              )}
+
+              {/* Signature 2 - Always show if name is provided */}
+              {signatoryName2 && (
+                <div
+                  className="flex flex-col items-center text-center"
+                  style={{ marginTop: -20 }}
+                >
+                  {signatureUrl2 && (
+                    <img
+                      src={signatureUrl2}
+                      alt={signatoryName2}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginBottom: -12 }}
+                    />
+                  )}
+                  {!signatureUrl2 && (
+                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                  )}
+                  <div
+                    className="text-sm font-bold"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {signatoryName2}
+                  </div>
+                  {signatoryTitle2 && (
+                    <div className="text-xs font-medium">{signatoryTitle2}</div>
+                  )}
+                </div>
+              )}
+
+              {/* Date display */}
+              {date && (
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-32 mt-5 mb-2" />
+                  <div
+                    className="text-sm font-medium"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {date}
+                  </div>
+                  <div className="text-xs font-bold ">Date</div>
+                </div>
+              )}
             </div>
           </div>
         </div>
