@@ -1,4 +1,10 @@
 import React, { useEffect } from "react";
+import vector1 from "../../assets/Vector (9).svg";
+import vector2 from "../../assets/Vector (10).svg";
+import vector3 from "../../assets/Vector (11).svg";
+import vector4 from "../../assets/Vector (12).svg";
+import vector6 from "../../assets/Vector (15).svg";
+import line from "../../assets/line.svg";
 
 interface CertificateTemplate14Props {
   header: string;
@@ -45,18 +51,11 @@ export default function CertificateTemplate14({
     const link1 = document.createElement("link");
     link1.rel = "stylesheet";
     link1.href =
-      "https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap";
-    document.head.appendChild(link1);
-
-    const link2 = document.createElement("link");
-    link2.rel = "stylesheet";
-    link2.href =
       "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
-    document.head.appendChild(link2);
+    document.head.appendChild(link1);
 
     return () => {
       document.head.removeChild(link1);
-      document.head.removeChild(link2);
     };
   }, []);
 
@@ -73,138 +72,127 @@ export default function CertificateTemplate14({
   return (
     <div className={`${containerClass} ${transformClass} bg-transparent`}>
       <div
-        className="shadow-lg relative overflow-hidden bg-white"
+        className="flex shadow-md rounded p-10 relative overflow-hidden"
         style={{ width: "640px", height: "500px" }}
       >
-        {/* Elegant border frame */}
-        <div className="absolute inset-0 border-8 border-double border-emerald-700 m-4"></div>
-        <div className="absolute inset-0 border-2 border-emerald-600 m-6"></div>
-
-        {/* Decorative corner flourishes */}
-        <div className="absolute top-8 left-8">
-          <svg width="40" height="40" viewBox="0 0 40 40">
-            <path
-              d="M0 20 Q0 0 20 0 M20 0 Q0 0 0 20"
-              fill="none"
-              stroke="#059669"
-              strokeWidth="2"
-            />
-          </svg>
+        <div>
+          <img src={vector6} alt="" className="absolute top-0 w-1/3 z-30" />
+          <div
+            className="w-80 h-20 absolute z-20 left-0"
+            style={{ background: "#FFB016", bottom: "160px" }}
+          ></div>
+          <div className="text-center flex flex-col items-center space-y-8 z-40 absolute w-1/3 h-2/3">
+            <div className="flex flex-col items-center">
+              {/* Organization Logo */}
+              {organizationLogo && (
+                <img
+                  src={organizationLogo}
+                  alt="Organization Logo"
+                  className="w-20 h-20 object-contain mb-4 border-3"
+                />
+              )}
+            </div>
+            {/* Header */}
+            <div className="flex flex-col gap-4 justify-center items-center text-white text-center">
+              <div className="w-50 h-2 bg-white"></div>
+              <h1 className="text-2xl uppercase">{header || "Excellence"}</h1>
+              <div className="w-50 h-2 bg-white"></div>
+            </div>
+          </div>
+          <div
+            className="flex flex-col gap-4 absolute left-14"
+            style={{ bottom: "40px" }}
+          >
+            <div
+              className="rounded-full w-2 h-2 border"
+              style={{ background: "#FFB016" }}
+            ></div>
+            <div className="flex gap-4">
+              <div
+                className="rounded-full w-2 h-2 border"
+                style={{ background: "#FFB016" }}
+              ></div>
+              <div
+                className="rounded-full w-2 h-2 border"
+                style={{ background: "#FFB016" }}
+              ></div>
+              <div
+                className="rounded-full w-2 h-2 border"
+                style={{ background: "#FFB016" }}
+              ></div>
+              <div
+                className="rounded-full w-2 h-2 border"
+                style={{ background: "#FFB016" }}
+              ></div>
+            </div>
+          </div>
+          <img
+            src={vector2}
+            alt=""
+            className="absolute bottom-0 w-1/3"
+            style={{ left: "100px" }}
+          />
+          <img
+            src={vector1}
+            alt=""
+            className="absolute bottom-0"
+            style={{ left: "230px" }}
+          />
+          <img src={vector4} alt="" className="absolute right-0 top-30" />
+          <img
+            src={vector3}
+            alt=""
+            className="absolute top-0"
+            style={{ right: "200px" }}
+          />
+          <div
+            className="w-40 h-10 absolute top-0 right-0 border"
+            style={{ background: "#FF5A59" }}
+          ></div>
+          <div className="z-0 w-full h-full opacity-50">
+            {Array.from({ length: 100 }).map((_, i) => (
+              <img
+                key={i}
+                src={line}
+                alt=""
+                className="absolute w-full left-0"
+                style={{ bottom: `${i * 4}px` }}
+              />
+            ))}
+          </div>
+          <div className="z-0 w-full h-full opacity-50">
+            {Array.from({ length: 32 }).map((_, i) => (
+              <img
+                key={i}
+                src={line}
+                alt=""
+                className="absolute w-full -right-10"
+                style={{ top: `${(i + 90) * 4}px` }}
+              />
+            ))}
+          </div>
         </div>
-        <div className="absolute top-8 right-8 rotate-90">
-          <svg width="40" height="40" viewBox="0 0 40 40">
-            <path
-              d="M0 20 Q0 0 20 0 M20 0 Q0 0 0 20"
-              fill="none"
-              stroke="#059669"
-              strokeWidth="2"
-            />
-          </svg>
-        </div>
-        <div className="absolute bottom-8 left-8 -rotate-90">
-          <svg width="40" height="40" viewBox="0 0 40 40">
-            <path
-              d="M0 20 Q0 0 20 0 M20 0 Q0 0 0 20"
-              fill="none"
-              stroke="#059669"
-              strokeWidth="2"
-            />
-          </svg>
-        </div>
-        <div className="absolute bottom-8 right-8 rotate-180">
-          <svg width="40" height="40" viewBox="0 0 40 40">
-            <path
-              d="M0 20 Q0 0 20 0 M20 0 Q0 0 0 20"
-              fill="none"
-              stroke="#059669"
-              strokeWidth="2"
-            />
-          </svg>
-        </div>
-
-        {/* Watermark pattern */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-5">
-          <svg width="300" height="300" viewBox="0 0 100 100">
-            <circle
-              cx="50"
-              cy="50"
-              r="45"
-              fill="none"
-              stroke="#059669"
-              strokeWidth="2"
-            />
-            <circle
-              cx="50"
-              cy="50"
-              r="35"
-              fill="none"
-              stroke="#059669"
-              strokeWidth="1"
-            />
-            <circle
-              cx="50"
-              cy="50"
-              r="25"
-              fill="none"
-              stroke="#059669"
-              strokeWidth="1"
-            />
-          </svg>
-        </div>
-
-        <div className="relative z-10 flex flex-col items-center justify-center h-full px-16 text-center">
-          {/* Organization Logo */}
-          {organizationLogo && (
-            <img
-              src={organizationLogo}
-              alt="Organization Logo"
-              className="w-20 h-20 object-contain mb-4"
-            />
-          )}
-
-          {/* Header */}
-          <div className="mb-6" style={{ fontFamily: "'Cinzel', serif" }}>
-            <p className="text-xs text-emerald-700 tracking-widest uppercase mb-2">
-              Certificate of
+        <div
+          className="w-1/2 text-center absolute z-50 flex flex-col"
+          style={{ top: "140px", right: "50px", gap: "60px" }}
+        >
+          <div className="flex flex-col gap-10">
+            {/* Presented to */}
+            <p className="text-sm uppercase">
+              This certificate is proudly awarded to
             </p>
-            <h1 className="text-5xl font-bold text-emerald-900">
-              {header || "Excellence"}
-            </h1>
+
+            {/* Recipient Name */}
+            <p className="w-full font-bold text-4xl border-b-2 pb-4 text-center">
+              {recipientName}
+            </p>
+
+            {/* Description */}
+            <p className="text-xs text-center">{description}</p>
           </div>
-
-          {/* Decorative divider */}
-          <div className="flex items-center gap-2 mb-6">
-            <div className="w-8 h-px bg-emerald-700"></div>
-            <div className="w-2 h-2 rounded-full bg-emerald-700"></div>
-            <div className="w-8 h-px bg-emerald-700"></div>
-          </div>
-
-          {/* Presented to */}
-          <p
-            className="text-xs text-gray-600 mb-2"
-            style={{ fontFamily: "'Lato', sans-serif" }}
-          >
-            This certificate is proudly awarded to
-          </p>
-
-          {/* Recipient Name */}
-          <h2
-            className="text-4xl font-bold text-emerald-800 mb-6 border-b-2 border-emerald-700 pb-2"
-            style={{ fontFamily: "'Cinzel', serif" }}
-          >
-            {recipientName}
-          </h2>
-
-          {/* Description */}
-          <p
-            className="text-xs text-gray-700 max-w-lg mb-8"
-            style={{ fontFamily: "'Lato', sans-serif" }}
-          >
-            {description}
-          </p>
 
           {/* Signatures Section */}
-          <div className="flex justify-center items-end gap-16 w-full mt-auto">
+          <div className="flex justify-center items-end gap-16 w-full">
             {hasSignature1 && (
               <div className="flex flex-col items-center">
                 {signatureUrl1 && (

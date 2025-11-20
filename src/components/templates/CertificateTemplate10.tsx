@@ -77,9 +77,11 @@ export default function CertificateTemplate10({
     <div className={`${containerClass} ${transformClass} bg-transparent`}>
       <div
         className="flex shadow-md rounded-sm relative overflow-hidden bg-white p-4"
-        style={{ width: "640px" }}
+        style={{ width: "640px",
+          height: "500px"
+        }}
       >
-        <div className="border border-gray-200 border-dashed p-8 w-full">
+        <div className="flex flex-col border border-gray-200 border-dashed p-8 w-full">
           <div className="flex justify-between">
             <div className="flex flex-col gap-10 items-start w-3/4">
               <div
