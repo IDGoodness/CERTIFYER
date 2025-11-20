@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import vector from "../../assets/Vector (8).svg";
+import path from "../../assets/path2646.svg";
+import wrapper from "../../assets/Wrapper.svg";
 
 interface CertificateTemplate13Props {
   header: string;
@@ -45,13 +48,13 @@ export default function CertificateTemplate13({
     const link1 = document.createElement("link");
     link1.rel = "stylesheet";
     link1.href =
-      "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap";
+      "https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap";
     document.head.appendChild(link1);
 
     const link2 = document.createElement("link");
     link2.rel = "stylesheet";
     link2.href =
-      "https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap";
+      "https://fonts.googleapis.com/css2?family=Island+Moments&display=swap";
     document.head.appendChild(link2);
 
     return () => {
@@ -73,20 +76,11 @@ export default function CertificateTemplate13({
   return (
     <div className={`${containerClass} ${transformClass} bg-transparent`}>
       <div
-        className="shadow-lg relative overflow-hidden bg-gradient-to-br from-indigo-50 to-purple-50"
+        className="shadow-md rounded flex items-center justify-center relative overflow-hidden py-16 px-4"
         style={{ width: "640px", height: "500px" }}
       >
-        {/* Decorative corner elements */}
-        <div className="absolute top-0 left-0 w-32 h-32 border-t-8 border-l-8 border-indigo-600"></div>
-        <div className="absolute top-0 right-0 w-32 h-32 border-t-8 border-r-8 border-indigo-600"></div>
-        <div className="absolute bottom-0 left-0 w-32 h-32 border-b-8 border-l-8 border-indigo-600"></div>
-        <div className="absolute bottom-0 right-0 w-32 h-32 border-b-8 border-r-8 border-indigo-600"></div>
-
-        {/* Decorative circles */}
-        <div className="absolute top-20 right-10 w-40 h-40 rounded-full bg-purple-200 opacity-30"></div>
-        <div className="absolute bottom-20 left-10 w-32 h-32 rounded-full bg-indigo-200 opacity-30"></div>
-
-        <div className="relative z-10 flex flex-col items-center justify-center h-full px-16 text-center">
+        <img src={vector} alt="" className="absolute w-11/12" />
+        <div className="flex flex-col items-center gap-4 text-center z-40">
           {/* Organization Logo */}
           {organizationLogo && (
             <img
@@ -98,43 +92,43 @@ export default function CertificateTemplate13({
 
           {/* Header */}
           <div
-            className="mb-6"
-            style={{ fontFamily: "'Playfair Display', serif" }}
+            className="flex flex-col items-center gap-4 mb-6"
+            style={{ fontFamily: "'Liber Baskerville', serif" }}
           >
-            <p className="text-sm text-indigo-700 tracking-widest uppercase mb-2">
-              Certificate of
-            </p>
-            <h1 className="text-5xl font-bold text-indigo-900">
+            <h1 className="text-3xl font-bold uppercase">
               {header || "Achievement"}
             </h1>
+            <div className="flex gap-4 items-center">
+              <img src={path} alt="" className="size-4" />
+              <img src={path} alt="" className="size-4" />
+              <img src={path} alt="" className="size-4" />
+              <img src={path} alt="" className="size-4" />
+            </div>
           </div>
 
-          {/* Divider */}
-          <div className="w-24 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 mb-6"></div>
+          <div>
+            {/* Presented to */}
+            <p className="text-xs text-gray-500 mb-2 font-semibold uppercase">
+              This is proudly presented to
+            </p>
 
-          {/* Presented to */}
-          <p
-            className="text-sm text-gray-600 mb-2"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
-          >
-            This is proudly presented to
-          </p>
+            {/* Recipient Name */}
+            <div>
+              <p
+                className="text-6xl"
+                style={{
+                  fontFamily: "'Island Moments', cursive",
+                  color: "#835A2A",
+                }}
+              >
+                {recipientName}
+              </p>
+              <img src={wrapper} alt="" />
+            </div>
 
-          {/* Recipient Name */}
-          <h2
-            className="text-4xl font-bold text-indigo-800 mb-6"
-            style={{ fontFamily: "'Playfair Display', serif" }}
-          >
-            {recipientName}
-          </h2>
-
-          {/* Description */}
-          <p
-            className="text-xs text-gray-700 max-w-md mb-8"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
-          >
-            {description}
-          </p>
+            {/* Description */}
+            <p className="text-xs text-gray-700 max-w-md mb-8">{description}</p>
+          </div>
 
           {/* Signatures Section */}
           <div className="flex justify-center items-end gap-12 w-full mt-auto">

@@ -77,10 +77,11 @@ export default function CertificateTemplate10({
     <div className={`${containerClass} ${transformClass} bg-transparent`}>
       <div
         className="flex shadow-md rounded-sm relative overflow-hidden bg-white p-4"
-        style={{ width: "640px"
+        style={{ width: "640px",
+          height: "500px"
         }}
       >
-        <div className="border border-gray-200 border-dashed p-8 w-full">
+        <div className="flex flex-col border border-gray-200 border-dashed p-8 w-full">
           <div className="flex justify-between">
             <div className="flex flex-col gap-10 items-start w-3/4">
               <div
@@ -116,7 +117,8 @@ export default function CertificateTemplate10({
           </div>
           </div>
 
-          <div className="flex items-end justify-between mt-10">
+          <div className="flex items-end justify-between"
+          style={{marginTop: "120px"}}>
           <div className="flex flex-col gap-2 text-sm">
             <p className="font-bold border-b border-[#6F6A5B]"
             style={{ fontFamily: "'Momo Signature', cursive" }}>Signature</p>
