@@ -14,7 +14,7 @@ const Hero: React.FC = () => {
           Generate, Manage & Monetize Your Certificates with Ease.
         </h2>
         <p className="text-[#696969] text-base md:text-lg">
-          A modern multi-tenant SaaS platform for organizations and educators to
+          A modern multi-tenant platform for organizations and educators to
           issue branded digital certificates, collect testimonials, and track
           performance.
         </p>

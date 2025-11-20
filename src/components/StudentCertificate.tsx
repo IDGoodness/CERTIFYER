@@ -401,7 +401,13 @@ const StudentCertificate: React.FC<StudentCertificateProps> = ({
         logging: false,
         useCORS: true,
         allowTaint: true,
-        foreignObjectRendering: false,
+        ignoreElements: (element) => {
+          // Ignore external stylesheets to prevent CORS errors
+          return (
+            element.tagName === "LINK" &&
+            element.getAttribute("rel") === "stylesheet"
+          );
+        },
         onclone: (clonedDoc) => {
           try {
             // Remove cloned stylesheets and <style> tags so html2canvas won't parse CSS

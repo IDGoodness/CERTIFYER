@@ -5,6 +5,7 @@ import Medal2Img from '../../assets/Medal2.svg';
 import Path2646 from '../../assets/path2646.svg';
 import VectorImg from '../../assets/Vector.svg';
 
+
 interface CertificateTemplate9Props {
   header: string;
   courseTitle: string;
@@ -73,8 +74,7 @@ export default function CertificateTemplate9({
         <div className="flex flex-col gap-10 items-start w-3/4 p-10">
           <div className="space-y-2"
           style={{ fontFamily: "'Libre Baskerville', serif" }}>
-            <p>CERTIFICATE OF</p>
-            <h2 className="font-bold text-4xl">ACHIEVEMENT</h2>
+            <h2 className="font-bold text-4xl uppercase">{header}</h2>
             <div className="flex gap-4">
               {/* Decorative repeated small paths */}
               <img src={Path2646} alt="" />
@@ -90,21 +90,32 @@ export default function CertificateTemplate9({
             style={{fontFamily: "'Momo Signature', cursive"}}>
               {recipientName}
             </p>
-            <p className="text-[#5A5549] text-sm max-w-sm">{description}</p>
+            <p className="text-[#5A5549] text-sm max-w-sm">{description || "Description goes here..." }</p>
           </div>
 
-          <div className="flex items-end justify-between w-3/4">
-            <div className="flex flex-col gap-2 text-sm">
-              <p className="font-bold border-b border-[#6F6A5B]">{signatoryName1}</p>
-              <p className="text-sm">{signatoryTitle1}</p>
+          {signatoryName1 && (
+            <div className="flex items-end justify-between w-3/4">
+              <div className="flex flex-col gap-2 text-sm">
+                <img
+                  src={signatureUrl1}
+                  alt={signatoryName1}
+                  className="w-24 h-16 object-contain" style={{marginBottom: -12}}
+                />
+                <p className="font-bold border-b border-[#6F6A5B]">
+                  {signatoryName1}
+                </p>
+                <p className="text-sm">{signatoryTitle1}</p>
+              </div>
+              {/* Date Display */}
+              {date && (
+                <div className="flex flex-col items-end gap-2 text-sm">
+                  <img src={VectorImg} alt="" className="w-1/3" />
+                  <p className="uppercase">Presented on</p>
+                  <p>{date || "DATE"}</p>
+                </div>
+              )}
             </div>
-
-            <div className="flex flex-col items-end gap-2 text-sm">
-              <img src={VectorImg} alt="" className="w-1/3" />
-              <p className="uppercase">Presented on</p>
-              <p>{date || "DATE"}</p>
-            </div>
-          </div>
+          )}
         </div>
 
         {/* Right side decorations */}

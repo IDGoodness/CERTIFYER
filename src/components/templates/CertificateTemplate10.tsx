@@ -86,10 +86,11 @@ export default function CertificateTemplate10({
             <div className="flex flex-col gap-10 items-start w-3/4">
               <div
                 className="space-y-2"
-                style={{ fontFamily: "'Libre Baskerville', serif"}}
+                style={{ fontFamily: "'Libre Baskerville', serif" }}
               >
-                <p>CERTIFICATE OF</p>
-                <h2 className="font-bold text-4xl">ACHIEVEMENT</h2>
+                <h2 className="font-bold text-4xl uppercase">
+                  {header || "Certificate of Completion"}
+                </h2>
                 <div className="flex items-center gap-4">
                   {/* Decorative repeated small paths */}
                   <img src={Path2646} alt="" />
@@ -111,25 +112,38 @@ export default function CertificateTemplate10({
                 </p>
                 <p className="text-[#5A5549] text-sm max-w-sm">{description}</p>
               </div>
-          </div>
-          <div>
-            <img src={Best} alt="" className="absolute top-0 right-0 w-1/2" />
-          </div>
+            </div>
+            <div>
+              <img src={Best} alt="" className="absolute top-0 right-0 w-1/2" />
+            </div>
           </div>
 
-          <div className="flex items-end justify-between"
-          style={{marginTop: "120px"}}>
-          <div className="flex flex-col gap-2 text-sm">
-            <p className="font-bold border-b border-[#6F6A5B]"
-            style={{ fontFamily: "'Momo Signature', cursive" }}>Signature</p>
-            <p>{signatoryTitle1}</p>
+          <div className="flex items-end justify-between mt-10">
+            {signatoryName1 && (
+              <div className="flex items-end justify-between w-3/4">
+                <div className="flex flex-col gap-2 text-sm">
+                  <img
+                    src={signatureUrl1}
+                    alt={signatoryName1}
+                    className="w-24 h-16 object-contain"
+                    style={{ marginBottom: -12 }}
+                  />
+                  <p className="font-bold border-b border-[#6F6A5B]">
+                    {signatoryName1}
+                  </p>
+                  <p className="text-sm">{signatoryTitle1}</p>
+                </div>
+                {/* Date Display */}
+                {date && (
+                  <div className="flex flex-col items-end gap-2 text-sm">
+                    <img src={VectorImg} alt="" className="w-1/3" />
+                    <p className="uppercase">Presented on</p>
+                    <p>{date || "DATE"}</p>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
-          <div className="flex flex-col items-end gap-2 text-sm">
-            <img src={VectorImg} alt="" className="w-1/3" />
-            <p className="uppercase">Presented on</p>
-            <p>{date || "DATE"}</p>
-          </div>
-        </div>
         </div>
       </div>
     </div>

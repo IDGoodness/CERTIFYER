@@ -81,30 +81,33 @@ export default function CertificateTemplate11({
     <div className={`${containerClass} ${transformClass} bg-transparent`}>
       <div
         className="flex justify-center items-center shadow-md rounded-md relative overflow-hidden bg-white"
-        style={{ width: "640px", 
+        style={{
+          width: "640px",
           height: "500px",
           paddingRight: "80px",
           paddingLeft: "80px",
-          fontFamily: "'Noto Serif', serif"
+          fontFamily: "'Noto Serif', serif",
         }}
       >
-        <img src={Vector} alt=""  className="absolute z-0 opacity-80"/>
-        <img src={Flag} alt="" className="absolute top-0 right-5"/>
+        <img src={Vector} alt="" className="absolute z-0 opacity-80" />
+        <img src={Flag} alt="" className="absolute top-0 right-5" />
         <div className="flex flex-col items-center gap-10 z-10">
           <div className="flex flex-col gap-10 text-center">
             <div
               className="space-y-2"
               style={{ fontFamily: "'Libre Baskerville', serif" }}
             >
-              <p className="text-2xl text-gray-700">CERTIFICATE OF</p>
-              <p className="text-4xl text-[#1A1815]">ACHIEVEMENT</p>
+              {/* <p className="text-2xl text-gray-700">CERTIFICATE OF</p> */}
+              <p className="text-4xl text-[#1A1815] uppercase">
+                {header || "Certificate of Completion"}{" "}
+              </p>
             </div>
 
             <p className="">
-              This certificate acknowledges your outstanding contribution and
-              dedication to the <b>Design project</b>
+              {description ||
+                "This certificate acknowledges your outstanding contribution and dedication to the project"}
             </p>
-            <div className="space-y-2">
+            <div className="space-y-1">
               <p>This is proudly presented to</p>
               <p
                 className="text-amber-800 text-4xl"
@@ -115,18 +118,81 @@ export default function CertificateTemplate11({
             </div>
           </div>
 
-          <div className="flex items-center justify-between w-1/2 text-center">
-            <div>
-              <p className="text-sm">Presented on</p>
-              <p style={{ fontFamily: "'Liber Baskerville', serif" }}>
-                {date || "DATE"}
-              </p>
-            </div>
-            <div>
-              <p className="text-sm">{signatoryTitle1}</p>
-              <p style={{ fontFamily: "'Momo Signature', cursive" }}>
-                Signature
-              </p>
+          <div className="mt-20 flex justify-between items-end">
+            <div className="flex gap-8 justify-center items-center mt-5">
+              {/* Signature 1 - Always show if name is provided */}
+              {signatoryName1 && (
+                <div
+                  className="flex flex-col items-center text-center"
+                  style={{ marginTop: -20 }}
+                >
+                  {signatoryTitle1 && (
+                    <div className="text-xs font-medium">{signatoryTitle1}</div>
+                  )}
+
+                  <div
+                    className="text-sm font-bold"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {signatoryName1}
+                  </div>
+                  {signatureUrl1 && (
+                    <img
+                      src={signatureUrl1}
+                      alt={signatoryName1}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginTop: -12 }}
+                    />
+                  )}
+                  {!signatureUrl1 && (
+                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                  )}
+                </div>
+              )}
+
+              {/* Signature 2 - Always show if name is provided */}
+              {signatoryName2 && (
+                <div
+                  className="flex flex-col items-center text-center"
+                  style={{ marginTop: -20 }}
+                >
+                  {signatoryTitle2 && (
+                    <div className="text-xs font-medium">{signatoryTitle2}</div>
+                  )}
+
+                  <div
+                    className="text-sm font-bold"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {signatoryName2}
+                  </div>
+                  {signatureUrl2 && (
+                    <img
+                      src={signatureUrl2}
+                      alt={signatoryName2}
+                      className="w-24 h-16 object-contain"
+                      style={{ marginTop: -12 }}
+                    />
+                  )}
+                  {!signatureUrl2 && (
+                    <div className="w-32 border-b-2 border-gray-400 mb-2" />
+                  )}
+                </div>
+              )}
+
+              {/* Date display */}
+              {date && (
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-32 mt-2 mb-5" />
+                  <div className="text-xs font-bold ">Date</div>
+                  <div
+                    className="text-sm font-medium"
+                    style={{ color: "#4D4D4D" }}
+                  >
+                    {date}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
