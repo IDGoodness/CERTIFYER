@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import vector2 from "../../assets/Vector (2).svg";
+import badge from "../../assets/best.svg";
 import vecto from "../../assets/Vecto.svg";
 
 interface CertificateTemplate1Props {
@@ -75,21 +75,24 @@ export default function CertificateTemplate1({
     >
       <div
         ref={ref}
-        className="border-2"
-        style={{ width: "640px", height: "500px" }}
+        className="shadow-sm py-10 rounded-sm flex items-center justify-center relative"
+        style={{
+          width: "640px",
+          height: "500px",
+          paddingLeft: "64px",
+          paddingRight: "64px",
+        }}
       >
         {/* Main Certificate Container - Landscape A4 proportions */}
-        <div className="space-y-4 py-10 rounded-lg mt-10 w-3xl border">
-          <div className="flex flex-row space-x-4 justify-between items-center p-4">
-            <img src={vector2} alt="" className="w-40" style={{ width: 40 }} />
-            <div className="flex flex-col items-end text-[#5D5D5D] ">
-              <h2
-                className="font-bold text-3xl uppercase text-center"
-                style={{ fontFamily: "'Cinzel Decorative', serif" }}
-              >
-                {header || "Certificate of Completion"}
-              </h2>
-            </div>
+        <div className="flex flex-col h-full" style={{ gap: "32px" }}>
+          <div className="flex gap-4 justify-between items-center">
+            <img src={badge} alt="" className="" style={{ width: "20%" }} />
+            <h2
+              className="font-bold text-3xl uppercase text-center text-gray-600"
+              style={{ fontFamily: "'Cinzel Decorative', serif" }}
+            >
+              {header || "Certificate of Completion"}
+            </h2>
             <div className="flex flex-col items-center text-[#BE8C2C]">
               <div className="flex flex-col items-center">
                 <img
@@ -98,45 +101,56 @@ export default function CertificateTemplate1({
                   style={{ width: 50 }}
                   alt={organizationName}
                 />
-                <h3 className="font-bold text-xs text-center -mt-14">
+                <h3 className="font-bold text-xs text-center ">
                   {organizationName}
                 </h3>
               </div>
             </div>
           </div>
 
-          <p className="text-center font-bold uppercase text-[#5d5d5d]">
-            This Certificate is proudly presented <br /> for honourable
-            achievement to
-          </p>
+          <div className="flex flex-col gap-4">
+            <p
+              className="text-center font-bold uppercase"
+              style={{ color: "#5d5d5d" }}
+            >
+              This Certificate is proudly presented <br /> for honourable
+              achievement to
+            </p>
 
-          <p
-            className="text-[#9B6327] uppercase text-center text-2xl pb-2"
-            style={{ fontFamily: "'Cinzel Decorative', serif" }}
-          >
-            {recipientName}
-          </p>
-          <p className="text-center font-bold uppercase text-sm text-[#5d5d5d]">
-            for successfully completing the course <br /> titled
-          </p>
+            <p
+              className="uppercase text-center text-2xl pb-2 tracking-wider"
+              style={{
+                fontFamily: "'Cinzel Decorative', serif",
+                color: "#9B6327",
+                borderBottom: "solid #9B6327"
+              }}
+            >
+              {recipientName}
+            </p>
+            <p className="text-center text-xs"
+            style={{color: '#5d5d5d'}}>
+              for successfully completing the course titled
+            </p>
 
-          <p
-            className="text-center text-xl font-semibold"
-            style={{ fontFamily: "'Cinzel Decorative', serif" }}
-          >
-            {courseTitle}
-          </p>
+            <p
+              className="text-center text-xl font-semibold"
+              style={{ fontFamily: "'Cinzel Decorative', serif" }}
+            >
+              {courseTitle}
+            </p>
 
-          <p
-            className="text-center text-lg mb-40"
-            style={{ marginLeft: 10, marginRight: 10 }}
-          >
-            {description ||
-              "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
-          </p>
+            <p
+              className="text-center text-xs"
+              style={{ marginLeft: 10, marginRight: 10 }}
+            >
+              {description ||
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio commodi incidunt harum, doloremque reprehenderit voluptas aspernatu"}
+            </p>
+          </div>
 
-          <div className="mt-20 flex justify-between items-end">
-            <div className="flex gap-8 justify-center items-center mt-5">
+          <div className="flex justify-between items-end"
+          style={{marginTop: "32px"}}>
+            <div className="flex gap-8 justify-center items-center">
               {/* Signature 1 - Always show if name is provided */}
               {signatoryName1 && (
                 <div
