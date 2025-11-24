@@ -5,7 +5,6 @@ import Medal2Img from "../../assets/Medal2.svg";
 import Path2646 from "../../assets/path2646.svg";
 import VectorImg from "../../assets/Vector.svg";
 
-
 interface CertificateTemplate9Props {
   header: string;
   courseTitle: string;
@@ -48,7 +47,6 @@ export default function CertificateTemplate9({
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[1056px] flex justify-center items-center";
 
-  // inject fonts: Libre Baskerville (available on Google Fonts) and attempt Momo_Signature (fallbacks will apply if unavailable)
   useEffect(() => {
     const link1 = document.createElement("link");
     link1.rel = "stylesheet";
@@ -58,7 +56,6 @@ export default function CertificateTemplate9({
 
     const link2 = document.createElement("link");
     link2.rel = "stylesheet";
-    // Momo_Signature may be a custom font; we attempt to load it via Google Fonts name (harmless if not found).
     link2.href =
       "https://fonts.googleapis.com/css2?family=Momo+Signature&display=swap";
     document.head.appendChild(link2);

@@ -67,7 +67,7 @@ export default function CertificateTemplate2({
   }, []);
 
   const containerClass = isPreview
-    ? "w-full mx-auto origin-center overflow-visible"
+    ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[1056px] flex justify-center items-center";
 
   // Normalize signatory data into a single array so we can render uniformly
@@ -78,8 +78,8 @@ export default function CertificateTemplate2({
   }> = [
     { src: signatureUrl1, name: signatoryName1, title: signatoryTitle1 },
     { src: signatureUrl2, name: signatoryName2, title: signatoryTitle2 },
-    ];
-  
+  ];
+
   const formattedDate = new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -93,10 +93,13 @@ export default function CertificateTemplate2({
     >
       <div
         className="flex justify-center bg-[#FEFEFD] items-center shadow-md px-16 py-10 rounded-lg relative overflow-hidden text-[#4D4D4D]"
-        style={{ width: "700px" }}
+        style={{
+          width: "640px",
+          height: "500px",
+        }}
       >
         {/* Repeating wavy background */}
-        <div className="z-0 w-full h-full">
+        <div className="z-0">
           {Array.from({ length: 32 }).map((_, i) => (
             <img
               key={i}
@@ -110,72 +113,78 @@ export default function CertificateTemplate2({
 
         {/* Corner decorations */}
         <div className="z-10">
-          <div className="absolute top-0 left-0">
-            <img src={rect4} alt="" className="" style={{ width: "300px" }} />
-          </div>
-          <div className="absolute top-0 right-0">
-            <img src={rect} alt="" className="" style={{ width: "380px" }} />
-          </div>
-          <div className="absolute bottom-0 right-0">
-            <img src={rect2} alt="" className="" style={{ width: "300px" }} />
-          </div>
-          <div className="absolute bottom-0 left-0">
-            <img src={rect3} alt="" className="" style={{ width: "380px" }} />
-          </div>
+          <img
+            src={rect}
+            alt=""
+            className="absolute top-0 right-0"
+            style={{ width: "60%" }}
+          />
+          <img
+            src={rect2}
+            alt=""
+            className="absolute bottom-0 right-0"
+            style={{ width: "40%" }}
+          />
+          <img
+            src={rect3}
+            alt=""
+            className="absolute bottom-0 left-0"
+            style={{ width: "60%" }}
+          />
+          <img
+            src={rect4}
+            alt=""
+            className="absolute top-0 left-0"
+            style={{ width: "40%" }}
+          />
+        </div>
+        <div className="flex items-center justify-center w-20 h-20 overflow-hidden absolute right-10 top-4">
+          {organizationLogo ? (
+            <img
+              src={organizationLogo}
+              alt={organizationName}
+              className="w-1/2 h-1/2 object-contain"
+            />
+          ) : (
+            <p className="uppercase text-sm text-center px-2">
+              {organizationName || "Brand Award"}
+            </p>
+          )}
         </div>
 
-        <div className="bg-transparent rounded p-6 w-full z-40 flex flex-col items-center gap-6">
-          <div className="flex gap-10 items-center">
-            <div className="flex items-center justify-center w-32 h-32 rounded-full border overflow-hidden">
-              {organizationLogo ? (
-                <img
-                  src={organizationLogo}
-                  alt={organizationName}
-                  className="w-full h-full object-contain p-2"
-                />
-              ) : (
-                <p className="uppercase text-sm text-center px-2">
-                  {organizationName || "Brand Award"}
-                </p>
-              )}
-            </div>
+        <div className="bg-transparent rounded p-6 w-full z-40 flex flex-col items-center gap-8">
+          <h2
+            className="text-3xl font-bold text-center"
+            style={{ fontFamily: "'Cinzel Decorative', serif" }}
+          >
+            {header || "CERTIFICATE"}
+          </h2>
 
-            <div className="flex flex-col text-center items-start space-y-2">
-              <h2
-                className="text-2xl font-bold"
-                style={{ fontFamily: "'Cinzel Decorative', serif" }}
-              >
-                {header || "CERTIFICATE"}
-              </h2>
-              {/* <p className="text-xl font-medium text-center">OF APPRECIATION</p> */}
-            </div>
-          </div>
-
-          <p className="text-center mt-4 font-medium">
+          <p className="text-center font-medium">
             THIS CERTIFICATE IS PROUDLY PRESENTED TO
           </p>
 
           <p
-            className="text-4xl text-center"
+            className="text-4xl text-center font-bold pb-2"
             style={{
-              width: "500px",
+              width: "75%",
               fontFamily: "'Tangerine', cursive",
-              fontWeight: 700,
-              borderBottom: "2px solid #000",
-              paddingBottom: "8px",
+              borderBottom: "2px solid #4D4D4D",
             }}
           >
             {recipientName}
           </p>
 
-          <p className="font-medium text-2xl" style={{fontFamily: 'cursive'}} > {courseTitle || "Course Title"} </p>
+          <p className="font-medium text-2xl" style={{ fontFamily: "cursive" }}>
+            {courseTitle || "Course Title"}{" "}
+          </p>
 
-          <p className="text-center max-w-2xl px-8">
+          <p className="text-center">
             {description ||
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat."}
           </p>
 
-          <div className="mt-20 flex justify-between items-end">
+          <div className="mt-10 flex justify-between items-end">
             <div className="flex gap-8 justify-center items-center mt-5">
               {/* Signature 1 - Always show if name is provided */}
               {signatoryName1 && (

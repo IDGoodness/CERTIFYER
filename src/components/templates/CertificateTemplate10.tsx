@@ -45,7 +45,6 @@ export default function CertificateTemplate10({
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[1056px] flex justify-center items-center";
 
-  // inject fonts: Libre Baskerville (available on Google Fonts) and attempt Momo_Signature (fallbacks will apply if unavailable)
   useEffect(() => {
     const link1 = document.createElement("link");
     link1.rel = "stylesheet";
@@ -55,7 +54,6 @@ export default function CertificateTemplate10({
 
     const link2 = document.createElement("link");
     link2.rel = "stylesheet";
-    // Momo_Signature may be a custom font; we attempt to load it via Google Fonts name (harmless if not found).
     link2.href =
       "https://fonts.googleapis.com/css2?family=Momo+Signature&display=swap";
     document.head.appendChild(link2);
@@ -77,9 +75,7 @@ export default function CertificateTemplate10({
     <div className={`${containerClass} ${transformClass} bg-transparent`}>
       <div
         className="flex shadow-md rounded-sm relative overflow-hidden bg-white p-4"
-        style={{ width: "640px",
-          height: "500px"
-        }}
+        style={{ width: "640px", height: "500px" }}
       >
         <div className="flex flex-col border border-gray-200 border-dashed p-8 w-full">
           <div className="flex justify-between">
@@ -110,7 +106,13 @@ export default function CertificateTemplate10({
                 >
                   {recipientName}
                 </p>
-                <p className="font-medium text-2xl" style={{fontFamily: 'cursive'}} > {courseTitle || "Course Title"} </p>
+                <p
+                  className="font-medium text-2xl"
+                  style={{ fontFamily: "cursive" }}
+                >
+                  {" "}
+                  {courseTitle || "Course Title"}{" "}
+                </p>
                 <p className="text-[#5A5549] text-sm max-w-sm">{description}</p>
               </div>
             </div>

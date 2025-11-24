@@ -41,6 +41,7 @@ export default function CertificateTemplate1({
 }: CertificateTemplate1Props) {
   const ref = useRef<HTMLDivElement>(null);
   const scale = mode === "student" ? "transform-scale-[0.3]" : "transform-scale-100";
+  // const scale = mode === "student" ? 0.3 : isPreview ? 2.5 : 1;
 
   useEffect(() => {
     const id = "cinzel-decorative-font";
@@ -63,10 +64,6 @@ export default function CertificateTemplate1({
   const containerClass = isPreview
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[1056px] flex justify-center items-center ";
-
-  // const certificateClass = isPreview
-  //   ? "flex flex-col justify-center items-center relative shadow-lg"
-  //   : "flex flex-col justify-center items-center relative";
 
   return (
     <div
@@ -122,13 +119,12 @@ export default function CertificateTemplate1({
               style={{
                 fontFamily: "'Cinzel Decorative', serif",
                 color: "#9B6327",
-                borderBottom: "solid #9B6327"
+                borderBottom: "solid #9B6327",
               }}
             >
               {recipientName}
             </p>
-            <p className="text-center text-xs"
-            style={{color: '#5d5d5d'}}>
+            <p className="text-center text-xs" style={{ color: "#5d5d5d" }}>
               for successfully completing the course titled
             </p>
 
@@ -148,8 +144,10 @@ export default function CertificateTemplate1({
             </p>
           </div>
 
-          <div className="flex justify-between items-end"
-          style={{marginTop: "32px"}}>
+          <div
+            className="flex justify-between items-end"
+            style={{ marginTop: "32px" }}
+          >
             <div className="flex gap-8 justify-center items-center">
               {/* Signature 1 - Always show if name is provided */}
               {signatoryName1 && (

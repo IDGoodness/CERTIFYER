@@ -45,7 +45,6 @@ export default function CertificateTemplate12({
     ? "w-full mx-auto origin-center overflow-visible flex justify-center"
     : "min-w-[1056px] flex justify-center items-center";
 
-  // inject fonts: Libre Baskerville (available on Google Fonts) and attempt Momo_Signature (fallbacks will apply if unavailable)
   useEffect(() => {
     const link1 = document.createElement("link");
     link1.rel = "stylesheet";
@@ -55,7 +54,6 @@ export default function CertificateTemplate12({
 
     const link2 = document.createElement("link");
     link2.rel = "stylesheet";
-    // Momo_Signature may be a custom font; we attempt to load it via Google Fonts name (harmless if not found).
     link2.href =
       "https://fonts.googleapis.com/css2?family=Momo+Signature&display=swap";
     document.head.appendChild(link2);
@@ -119,8 +117,17 @@ export default function CertificateTemplate12({
             >
               {recipientName}
             </p>
-            <p className="font-medium text-xl" style={{fontFamily: 'cursive'}} > {courseTitle || "Course Title"} </p>
-            <p className="text-[#5A5549] max-w-lg">{description || "This certificate acknowledges your outstanding contribution and dedication to the project"}</p>
+            <p
+              className="font-medium text-xl"
+              style={{ fontFamily: "cursive" }}
+            >
+              {" "}
+              {courseTitle || "Course Title"}{" "}
+            </p>
+            <p className="text-[#5A5549] max-w-lg">
+              {description ||
+                "This certificate acknowledges your outstanding contribution and dedication to the project"}
+            </p>
           </div>
 
           <div className="mt-20 flex justify-between items-end">
@@ -154,7 +161,11 @@ export default function CertificateTemplate12({
                 </div>
               )}
 
-              <img src={badge} alt="badge" className="w-10 h-10 object-contain" />
+              <img
+                src={badge}
+                alt="badge"
+                className="w-10 h-10 object-contain"
+              />
 
               {/* Signature 2 - Always show if name is provided */}
               {signatoryName2 && (

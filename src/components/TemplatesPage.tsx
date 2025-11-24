@@ -423,7 +423,7 @@ export default function TemplatesPage({
 
             <div className="p-8 bg-gray-50 flex items-center justify-center">
               <TemplateErrorBoundary>
-                <PreviewWrapper scale={0.4} origin="center" wrapperSize={2}>
+                <PreviewWrapper scale={1} origin="center" wrapperSize={2}>
                   <CertificateRenderer
                     templateId={preview.id}
                     header="Certificate of Completion"
