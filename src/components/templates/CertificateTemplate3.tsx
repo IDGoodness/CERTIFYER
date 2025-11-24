@@ -149,20 +149,21 @@ export default function CertificateTemplate3({
               "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}
           </p>
 
-          <div className="mt-10 flex justify-between items-end">
-            <div className="flex gap-8 justify-center items-center mt-5">
+          <div className="mt-10 flex justify-between items-end w-full">
+            <div className="flex w-full justify-between items-center"
+            style={{justifyContent: "space-between"}}>
               {/* Signature 1 - Always show if name is provided */}
               {signatoryName1 && (
                 <div
-                  className="flex flex-col items-center text-center"
+                  className="flex flex-col items-center text-center gap-1"
                   style={{ marginTop: -20 }}
                 >
                   {signatureUrl1 && (
                     <img
                       src={signatureUrl1}
                       alt={signatoryName1}
-                      className="w-24 h-16 object-contain"
-                      style={{ marginBottom: -12 }}
+                      className="w-full h-14 object-contain border-b-2 pb-1"
+                      // style={{ marginBottom: -12 }}
                     />
                   )}
                   {!signatureUrl1 && (
@@ -183,15 +184,15 @@ export default function CertificateTemplate3({
               {/* Signature 2 - Always show if name is provided */}
               {signatoryName2 && (
                 <div
-                  className="flex flex-col items-center text-center"
+                  className="flex flex-col items-center text-center gap-1"
                   style={{ marginTop: -20 }}
                 >
                   {signatureUrl2 && (
                     <img
                       src={signatureUrl2}
                       alt={signatoryName2}
-                      className="w-24 h-16 object-contain"
-                      style={{ marginBottom: -12 }}
+                      className="w-full h-14 object-contain border-b-2 pb-1"
+                      // style={{ marginBottom: -12 }}
                     />
                   )}
                   {!signatureUrl2 && (

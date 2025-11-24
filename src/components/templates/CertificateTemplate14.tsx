@@ -72,27 +72,35 @@ export default function CertificateTemplate14({
         style={{ width: "640px", height: "500px" }}
       >
         <div>
-          <img src={vector6} alt="" className="absolute top-0 w-1/3 z-30" />
           <div
             className="w-80 h-20 absolute z-20 left-0"
             style={{ background: "#FFB016", bottom: "160px" }}
           ></div>
-          <div className="text-center flex flex-col items-center space-y-8 z-40 absolute w-1/3">
-            <div className="flex flex-col items-center">
-              {/* Organization Logo */}
-              {organizationLogo && (
-                <img
-                  src={organizationLogo}
-                  alt="Organization Logo"
-                  className="w-20 h-20 object-contain mb-4 border-3"
-                />
-              )}
-            </div>
-            {/* Header */}
-            <div className="flex flex-col gap-4 justify-center items-center text-white text-center">
-              <div className="w-50 h-2 bg-white"></div>
-              <h1 className="text-2xl uppercase">{header || "Excellence"}</h1>
-              <div className="w-50 h-2 bg-white"></div>
+          <div>
+            <img
+              src={vector6}
+              alt=""
+              className="absolute top-0 w-1/3 z-30 left-10"
+            />
+            <div className="text-center flex flex-col items-center space-y-4 z-40 absolute w-1/3 left-6">
+              <div className="flex flex-col items-center">
+                {/* Organization Logo */}
+                {organizationLogo && (
+                  <img
+                    src={organizationLogo}
+                    alt="Organization Logo"
+                    className="w-20 h-20 object-contain"
+                  />
+                )}
+              </div>
+              {/* Header */}
+              <div className="flex flex-col gap-4 justify-center items-center text-white text-center">
+                <div className="w-40 h-2 bg-white"></div>
+                <h1 className="text-xl tracking-widest uppercase font-bold">
+                  {header || "Excellence"}
+                </h1>
+                <div className="w-40 h-2 bg-white"></div>
+              </div>
             </div>
           </div>
           <div
@@ -191,12 +199,17 @@ export default function CertificateTemplate14({
             </p>
 
             {/* Description */}
-            <p className="text-xs text-center" style={{marginTop: -35}} >{description}</p>
+            <p className="text-xs text-center" style={{ marginTop: -35 }}>
+              {description}
+            </p>
           </div>
 
           {/* Signatures Section */}
           <div className="flex justify-between items-end">
-            <div className="flex gap-1 justify-center items-center" style={{marginTop: -40}}>
+            <div
+              className="flex gap-1 justify-center items-center"
+              style={{ marginTop: -40 }}
+            >
               {/* Signature 1 - Always show if name is provided */}
               {signatoryName1 && (
                 <div
