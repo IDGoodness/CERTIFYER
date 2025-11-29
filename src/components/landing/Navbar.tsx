@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/logo.svg";
+import logo from "../../assets/logo.png";
 import { IoIosMenu } from "react-icons/io";
 import { IoClose } from "react-icons/io5";
 import { Link } from "react-scroll";

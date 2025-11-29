@@ -135,7 +135,7 @@ import {
   buildFullCertificateUrl,
   normalizeCertificateUrl,
 } from "../utils/certificateUtils";
-import logo from "../assets/logo.svg";
+import logo from "../assets/logo.png";
 // import Footer from "../components/landing/Footer";
 
 // Organization is the new name for Subsidiary
