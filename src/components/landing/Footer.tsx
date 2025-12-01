@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
 const Footer: React.FC = () => {
@@ -38,18 +39,18 @@ const Footer: React.FC = () => {
             >
               Cookies
             </a> */}
-            <a
-              href="/terms"
+            <Link
+              to="/terms"
               className="block text-white/70 hover:text-white transition-colors"
             >
               Terms of Service
-            </a>
-            <a
-              href="/privacy"
+            </Link>
+            <Link
+              to="/privacy"
               className="block text-white/70 hover:text-white transition-colors"
             >
               Privacy Policy
-            </a>
+            </Link>
           </div>
         </div>
         <div>
@@ -137,18 +138,18 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="flex gap-4 text-sm">
-          <a
-            href="/term"
+          <Link
+            to="/terms"
             className="block text-white/70 hover:text-white transition-colors"
           >
             Terms of Service
-          </a>
-          <a
-            href="/privacy"
+          </Link>
+          <Link
+            to="/privacy"
             className="block text-white/70 hover:text-white transition-colors"
           >
             Privacy Policy
-          </a>
+          </Link>
           {/* <a
             href="/security"
             className="block text-white/70 hover:text-white transition-colors"
