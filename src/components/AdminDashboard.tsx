@@ -1584,7 +1584,7 @@ export default function AdminDashboard({
           </nav>
 
           {/* Sign Out Button */}
-          <div className="p-4 border-t border-gray-200 bg-black ">
+          <div className="p-4 border-t border-gray-200 h-16 bg-black">
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
@@ -1602,11 +1602,11 @@ export default function AdminDashboard({
                   }}
                 >
                   <LogOut
-                    className={`w-4 h-4 text-white ${
+                    className={`w-4 h-4 text-white hover:text-black ${
                       navCollapsed ? "" : "mr-2"
                     } flex-shrink-0`}
                   />
-                  {!navCollapsed && <span className="text-white" >Sign Out</span>}
+                  {!navCollapsed && <span className="text-white hover:text-black">Sign Out</span>}
                 </Button>
               </TooltipTrigger>
               <TooltipContent side="right">
@@ -3175,7 +3175,7 @@ export default function AdminDashboard({
           </div>
 
           {/* Footer - Sticky at bottom */}
-          <footer className="bg-black text-white px-4 md:px-8 py-6 flex-shrink-0">
+          <footer className="bg-black text-white px-4 md:px-8 py-3 flex-shrink-0">
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
                 <img src={logo} alt="logo" className="w-10" />

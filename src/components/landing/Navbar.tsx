@@ -56,7 +56,7 @@ const Navbar: React.FC = () => {
               className="flex items-center cursor-pointer"
             >
               <img src={logo} alt="logo" className="w-12" />
-              <p className="text-orange-500 text-2xl font-medium hidden md:block md:text-xl">
+              <p className="text-orange-500 font-medium hidden md:block md:text-2xl">
                 Certifyer
               </p>
             </Link>
